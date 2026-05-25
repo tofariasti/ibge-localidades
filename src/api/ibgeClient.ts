@@ -1,12 +1,12 @@
 const BASE_URL = 'https://servicodados.ibge.gov.br/api/v1/localidades'
 
 export class IbgeApiError extends Error {
-  constructor(
-    message: string,
-    public readonly status: number,
-  ) {
+  readonly status: number
+
+  constructor(message: string, status: number) {
     super(message)
     this.name = 'IbgeApiError'
+    this.status = status
   }
 }
 
