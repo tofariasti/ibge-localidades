@@ -1,8 +1,53 @@
+import { Link, useParams } from 'react-router-dom'
+import { getEstado } from '../api/localidadesService'
+import { Breadcrumb } from '../components/Breadcrumb'
+import { ErrorMessage } from '../components/ErrorMessage'
+import { Loading } from '../components/Loading'
+import { useIbgeQuery } from '../hooks/useIbgeQuery'
+
 export function EstadoDetail() {
+  const { id } = useParams<{ id: string }>()
+  const { data, loading, error, refetch } = useIbgeQuery(() => getEstado(id!), [id])
+
+  if (!id) return <ErrorMessage message="Estado não informado." />
+  if (loading) return <Loading />
+  if (error) return <ErrorMessage message={error} onRetry={refetch} />
+  if (!data) return <p>Estado não encontrado.</p>
+
   return (
     <section className="page">
-      <h1>Detalhe do estado</h1>
-      <p>Em implementação.</p>
+      <Breadcrumb
+        items={[
+          { label: 'Início', to: '/' },
+          { label: 'Estados', to: '/estados' },
+          { label: data.regiao.nome, to: `/regioes/${data.regiao.id}` },
+          { label: data.nome },
+        ]}
+      />
+      <h1>
+        {data.nome} ({data.sigla})
+      </h1>
+      <dl className="detail">
+        <dt>ID</dt>
+        <dd>{data.id}</dd>
+        <dt>Sigla</dt>
+        <dd>{data.sigla}</dd>
+        <dt>Região</dt>
+        <dd>
+          <Link to={`/regioes/${data.regiao.id}`}>
+            {data.regiao.nome} ({data.regiao.sigla})
+          </Link>
+        </dd>
+      </dl>
+
+      <p>
+        <Link to={`/estados/${data.id}/municipios`} className="button">
+          Ver municípios
+        </Link>
+      </p>
+      <p>
+        <Link to="/estados">← Voltar para estados</Link>
+      </p>
     </section>
   )
 }
