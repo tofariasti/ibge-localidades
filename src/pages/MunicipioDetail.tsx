@@ -1,8 +1,93 @@
+import { Link, useParams } from 'react-router-dom'
+import { getMunicipio } from '../api/localidadesService'
+import { Breadcrumb } from '../components/Breadcrumb'
+import { ErrorMessage } from '../components/ErrorMessage'
+import { Loading } from '../components/Loading'
+import { useIbgeQuery } from '../hooks/useIbgeQuery'
+import type { Municipio, UF } from '../types/localidades'
+
+function getUfFromMunicipio(municipio: Municipio): UF | null {
+  if (municipio.microrregiao?.mesorregiao?.UF) {
+    return municipio.microrregiao.mesorregiao.UF
+  }
+  if (municipio['regiao-imediata']?.['regiao-intermediaria']?.UF) {
+    return municipio['regiao-imediata']['regiao-intermediaria'].UF
+  }
+  return null
+}
+
 export function MunicipioDetail() {
+  const { id } = useParams<{ id: string }>()
+  const { data, loading, error, refetch } = useIbgeQuery(() => getMunicipio(id!), [id])
+
+  if (!id) return <ErrorMessage message="Município não informado." />
+  if (loading) return <Loading />
+  if (error) return <ErrorMessage message={error} onRetry={refetch} />
+  if (!data) return <p>Município não encontrado.</p>
+
+  const uf = getUfFromMunicipio(data)
+  const microrregiao = data.microrregiao
+
   return (
     <section className="page">
-      <h1>Detalhe do município</h1>
-      <p>Em implementação.</p>
+      <Breadcrumb
+        items={[
+          { label: 'Início', to: '/' },
+          { label: 'Estados', to: '/estados' },
+          ...(uf
+            ? [
+                { label: uf.nome, to: `/estados/${uf.id}` },
+                { label: 'Municípios', to: `/estados/${uf.id}/municipios` },
+              ]
+            : []),
+          { label: data.nome },
+        ]}
+      />
+      <h1>{data.nome}</h1>
+      <dl className="detail">
+        <dt>ID</dt>
+        <dd>{data.id}</dd>
+        {uf && (
+          <>
+            <dt>UF</dt>
+            <dd>
+              <Link to={`/estados/${uf.id}`}>
+                {uf.nome} ({uf.sigla})
+              </Link>
+            </dd>
+            <dt>Região</dt>
+            <dd>
+              <Link to={`/regioes/${uf.regiao.id}`}>
+                {uf.regiao.nome} ({uf.regiao.sigla})
+              </Link>
+            </dd>
+          </>
+        )}
+        {microrregiao && (
+          <>
+            <dt>Microrregião</dt>
+            <dd>{microrregiao.nome}</dd>
+            <dt>Mesorregião</dt>
+            <dd>{microrregiao.mesorregiao.nome}</dd>
+          </>
+        )}
+        {data['regiao-imediata'] && (
+          <>
+            <dt>Região imediata</dt>
+            <dd>{data['regiao-imediata'].nome}</dd>
+            <dt>Região intermediária</dt>
+            <dd>{data['regiao-imediata']['regiao-intermediaria'].nome}</dd>
+          </>
+        )}
+      </dl>
+
+      {uf && (
+        <p>
+          <Link to={`/estados/${uf.id}/municipios`}>
+            ← Voltar para municípios de {uf.sigla}
+          </Link>
+        </p>
+      )}
     </section>
   )
 }
