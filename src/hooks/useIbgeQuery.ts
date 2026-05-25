@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect -- hook de fetch com reset de loading por dependência */
 import { useEffect, useState } from 'react'
 
 interface UseIbgeQueryResult<T> {

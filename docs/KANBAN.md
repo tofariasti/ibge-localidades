@@ -8,11 +8,12 @@ _(nenhuma)_
 
 ## Backlog
 
-### US-07 — Polimento e documentação
+## US futuras (fora do MVP)
 
-- [ ] T7.1 CSS global responsivo
-- [ ] T7.2 README com mapa de rotas e curl
-- [ ] T7.3 Atualizar este arquivo (US 01–06 em Concluído)
+- Países (`/paises`)
+- Busca textual em municípios
+- Mesorregiões / microrregiões / regiões imediatas e intermediárias
+- Testes E2E (Playwright) e CI
 
 ## Concluído
 
@@ -27,42 +28,42 @@ _(nenhuma)_
 
 ### US-02 — Cliente HTTP e tipos IBGE
 
-- [ ] T2.1 `types/localidades.ts`
-- [ ] T2.2 `api/ibgeClient.ts`
-- [ ] T2.3 `api/localidadesService.ts`
-- [ ] T2.4 `hooks/useIbgeQuery.ts`
+- [x] T2.1 `types/localidades.ts`
+- [x] T2.2 `api/ibgeClient.ts`
+- [x] T2.3 `api/localidadesService.ts`
+- [x] T2.4 `hooks/useIbgeQuery.ts`
 
 ### US-03 — Shell e roteamento
 
-- [ ] T3.1 `react-router-dom`
-- [ ] T3.2 `Layout`
-- [ ] T3.3 `Loading`, `ErrorMessage`, `Breadcrumb`
-- [ ] T3.4 `AppRoutes` + stubs
-- [ ] T3.5 `Home`
+- [x] T3.1 `react-router-dom`
+- [x] T3.2 `Layout`
+- [x] T3.3 `Loading`, `ErrorMessage`, `Breadcrumb`
+- [x] T3.4 `AppRoutes` + stubs
+- [x] T3.5 `Home`
 
 ### US-04 — Telas de Regiões
 
-- [ ] T4.1 `RegioesList`
-- [ ] T4.2 `RegiaoDetail`
-- [ ] T4.3 Links região → UF
-- [ ] T4.4 Loading e erro
+- [x] T4.1 `RegioesList`
+- [x] T4.2 `RegiaoDetail`
+- [x] T4.3 Links região → UF
+- [x] T4.4 Loading e erro
 
 ### US-05 — Telas de UFs
 
-- [ ] T5.1 `EstadosList`
-- [ ] T5.2 `EstadoDetail`
-- [ ] T5.3 Link municípios
-- [ ] T5.4 Breadcrumb
+- [x] T5.1 `EstadosList`
+- [x] T5.2 `EstadoDetail`
+- [x] T5.3 Link municípios
+- [x] T5.4 Breadcrumb
 
 ### US-06 — Telas de Municípios
 
-- [ ] T6.1 `MunicipiosList`
-- [ ] T6.2 `MunicipioDetail`
-- [ ] T6.3 Breadcrumb
-- [ ] T6.4 Smoke fluxo completo
+- [x] T6.1 `MunicipiosList`
+- [x] T6.2 `MunicipioDetail`
+- [x] T6.3 Breadcrumb
+- [x] T6.4 Smoke fluxo completo
 
----
+### US-07 — Polimento e documentação
 
-## US futuras (fora do MVP)
-
-- Países, busca em municípios, meso/micro/regiões imediatas, E2E/CI
+- [x] T7.1 CSS global responsivo
+- [x] T7.2 README com mapa de rotas e curl
+- [x] T7.3 Atualizar este arquivo (US 01–06 em Concluído)
