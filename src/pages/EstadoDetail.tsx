@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { getEstado } from '../api/localidadesService'
+import { BrazilMap } from '../components/BrazilMap'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
@@ -27,6 +28,9 @@ export function EstadoDetail() {
       <h1>
         {data.nome} ({data.sigla})
       </h1>
+
+      <BrazilMap activeStateId={data.id} />
+
       <dl className="detail">
         <dt>ID</dt>
         <dd>{data.id}</dd>

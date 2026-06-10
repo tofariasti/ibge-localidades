@@ -15,6 +15,13 @@ _(nenhuma)_
 - Mesorregiões / microrregiões / regiões imediatas e intermediárias
 - Testes E2E (Playwright) e CI
 
+### US-08 — Mapa interativo do Brasil
+
+- [x] T8.1 Gerar malha SVG das UFs a partir da API de Malhas IBGE
+- [x] T8.2 Componente `BrazilMap` com hover, teclado e navegação
+- [x] T8.3 Integrar na Home, detalhe de UF e detalhe de região
+- [x] T8.4 Legenda clicável por macrorregião
+
 ## Concluído
 
 ### US-01 — Fundação do projeto

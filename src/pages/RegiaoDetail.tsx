@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { getEstadosPorRegiao, getRegiao } from '../api/localidadesService'
+import { BrazilMap } from '../components/BrazilMap'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { DataList } from '../components/DataList'
 import { ErrorMessage } from '../components/ErrorMessage'
@@ -33,6 +34,9 @@ export function RegiaoDetail() {
         ]}
       />
       <h1>{regiao.nome}</h1>
+
+      <BrazilMap highlightRegionId={regiao.id} />
+
       <dl className="detail">
         <dt>ID</dt>
         <dd>{regiao.id}</dd>

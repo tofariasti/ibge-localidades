@@ -10,6 +10,8 @@ Hierarquia do MVP: **Regiões → UFs → Municípios**.
 
 ### Página inicial
 
+Mapa interativo em SVG (malha simplificada do IBGE): clique em qualquer UF para ir ao detalhe do estado; a legenda leva às macrorregiões.
+
 ![Página inicial](docs/screenshots/home.png)
 
 ### Regiões
@@ -125,6 +127,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 | `npm run preview` | Preview do build |
 | `npm run preview:pages` | Preview do build GitHub Pages |
 | `npm run lint` | ESLint |
+| `npm run generate:map` | Regenera `src/data/brazilMap.generated.json` via API de Malhas IBGE |
 
 ## Kanban
 

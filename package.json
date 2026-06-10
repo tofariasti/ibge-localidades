@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "build:pages": "tsc -b && GITHUB_PAGES=true vite build && cp dist/index.html dist/404.html",
     "lint": "eslint .",
+    "generate:map": "node scripts/generate-brazil-map.mjs",
     "preview": "vite preview",
     "preview:pages": "npm run build:pages && vite preview"
   },

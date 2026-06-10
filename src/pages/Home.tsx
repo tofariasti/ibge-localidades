@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { BrazilMap } from '../components/BrazilMap'
 
 export function Home() {
   return (
@@ -8,6 +9,9 @@ export function Home() {
         Explore a hierarquia geográfica oficial do IBGE: regiões, unidades
         federativas e municípios.
       </p>
+
+      <BrazilMap className="home__map" />
+
       <div className="home-cards">
         <Link to="/regioes" className="card">
           <h2>Regiões</h2>
