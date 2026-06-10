@@ -12,6 +12,8 @@ Hierarquia do MVP: **Regiões → UFs → Municípios**.
 
 Mapa interativo em SVG (malha simplificada do IBGE): clique em qualquer UF para ir ao detalhe do estado; a legenda leva às macrorregiões.
 
+![Mapa interativo do Brasil](docs/screenshots/mapa-brasil.png)
+
 ![Página inicial](docs/screenshots/home.png)
 
 ### Regiões
