@@ -4,6 +4,32 @@ Frontend React (Vite + TypeScript) para consumir a [API de Localidades do IBGE](
 
 Hierarquia do MVP: **Regiões → UFs → Municípios**.
 
+**Demo:** [tofariasti.github.io/ibge-localidades](https://tofariasti.github.io/ibge-localidades/)
+
+## Telas
+
+### Página inicial
+
+![Página inicial](docs/screenshots/home.png)
+
+### Regiões
+
+![Lista de regiões](docs/screenshots/regioes.png)
+
+![Detalhe da região Sudeste](docs/screenshots/regiao-detalhe.png)
+
+### Estados
+
+![Lista de estados](docs/screenshots/estados.png)
+
+![Detalhe do estado de São Paulo](docs/screenshots/estado-detalhe.png)
+
+### Municípios
+
+![Municípios de São Paulo](docs/screenshots/municipios.png)
+
+![Detalhe do município de São Paulo](docs/screenshots/municipio-detalhe.png)
+
 ## Pré-requisitos
 
 - Node.js 20+
