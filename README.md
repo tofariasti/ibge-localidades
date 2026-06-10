@@ -36,6 +36,27 @@ docker run -p 8080:80 ibge-localidades
 
 Acesse http://localhost:8080
 
+## GitHub Pages
+
+A cada push na branch `main`, o workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) publica o build em:
+
+**https://tofariasti.github.io/ibge-localidades/**
+
+### Configuração no repositório
+
+Em **Settings → Pages → Build and deployment**, selecione **GitHub Actions** como fonte.
+
+### Build local (mesmo ambiente do Pages)
+
+```bash
+npm run build:pages
+npm run preview:pages
+```
+
+Acesse http://localhost:4173/ibge-localidades/
+
+O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em raiz.
+
 ## Rotas da aplicação
 
 | Rota | Descrição |
@@ -73,8 +94,10 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 | Comando | Descrição |
 |---------|-----------|
 | `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Build de produção |
+| `npm run build` | Build de produção (Docker / raiz) |
+| `npm run build:pages` | Build para GitHub Pages |
 | `npm run preview` | Preview do build |
+| `npm run preview:pages` | Preview do build GitHub Pages |
 | `npm run lint` | ESLint |
 
 ## Kanban
