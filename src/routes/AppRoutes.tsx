@@ -23,13 +23,17 @@ import { RankingUfs } from '../pages/RankingUfs'
 import { RankingMunicipios } from '../pages/RankingMunicipios'
 import { RankingMunicipiosUf } from '../pages/RankingMunicipiosUf'
 import { Salvos } from '../pages/Salvos'
+import { Glossario } from '../pages/Glossario'
+import { Doar } from '../pages/Doar'
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="doar" element={<Doar />} />
         <Route path="salvos" element={<Salvos />} />
+        <Route path="glossario" element={<Glossario />} />
         <Route path="regioes" element={<RegioesList />} />
         <Route path="regioes/:id" element={<RegiaoDetail />} />
         <Route path="estados" element={<EstadosList />} />

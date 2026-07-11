@@ -3,7 +3,14 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import App from './App.tsx'
+import {
+  applyTheme,
+  readStoredTheme,
+  resolveTheme,
+} from './lib/theme'
 import './index.css'
+
+applyTheme(resolveTheme(readStoredTheme()))
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
 

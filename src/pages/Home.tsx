@@ -102,6 +102,10 @@ export function Home() {
           <h2>Salvos</h2>
           <p>Favoritos e histórico neste navegador</p>
         </Link>
+        <Link to="/glossario" className="card">
+          <h2>Glossário</h2>
+          <p>Código IBGE, meso/micro, intermediária e imediata</p>
+        </Link>
         <Link to="/paises" className="card">
           <h2>Países</h2>
           <p>Países e áreas com códigos M49 e ISO</p>

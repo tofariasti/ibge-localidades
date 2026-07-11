@@ -6,6 +6,14 @@ Hierarquia do MVP: **Regiões → UFs → Municípios**.
 
 **Demo:** [tofariasti.github.io/ibge-localidades](https://tofariasti.github.io/ibge-localidades/)
 
+## Apoie o projeto
+
+Ferramenta gratuita e open source. Se for útil, você pode doar via **Pix** (qualquer valor; sugestão **R$ 15**):
+
+- [Doar com Pix (Nubank)](https://nubank.com.br/cobrar/1hezk0/6a52bcc1-36af-4741-8dd4-30f19cea975a)
+- No app: [Apoiar com Pix](https://tofariasti.github.io/ibge-localidades/doar) (QR Code e Copia e Cola)
+- Chave Pix (aleatória): `114a4eea-01e5-4656-af4c-6338a08c35a3`
+
 ## Telas
 
 ### Página inicial
@@ -110,6 +118,7 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/municipios/:id` | Detalhe do município |
 | `/comparar` | Comparação lado a lado (query `ids`) |
 | `/salvos` | Favoritos e histórico local |
+| `/glossario` | Glossário de termos IBGE |
 | `/rankings` | Hub de rankings (UFs e municípios) |
 | `/rankings/ufs` | Ranking de UFs por indicador (query `indicador`) |
 | `/rankings/municipios` | Escolha de UF para ranking municipal |
@@ -207,6 +216,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Salvos** em `/salvos`: favoritar região/UF/município e ver histórico recente (ambos em `localStorage`)
 - **Links de view**: filtros (`?q=`), mapa (`?mapa=indicador`), rankings (`?indicador=`) e comparar (`?ids=`) — botão “Copiar link desta view”
 - **PWA** instalável (manifest + service worker) com layout mobile aprimorado
+- **Glossário** em `/glossario` e tema claro/escuro; skip link e melhorias de `aria`/foco na busca e no mapa
 - **Rankings** de UFs e de municípios por UF (população, área ou densidade — Censo 2022), com link para o detalhe
 ## Scripts
 
@@ -266,3 +276,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 21. `feat: favoritos e histórico local de consultas`
 22. `feat: sincroniza filtros e mapa na URL para compartilhar views`
 23. `feat: PWA instalável e ajustes de layout touch`
+24. `feat: glossário, tema claro/escuro e melhorias de acessibilidade`

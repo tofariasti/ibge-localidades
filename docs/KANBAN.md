@@ -14,12 +14,6 @@ _(nenhuma)_
 
 ### Fase 4 — Retenção e polimento
 
-#### US-24 — Glossário e acessibilidade
-
-- [ ] T24.1 Página/glossário: código IBGE, meso/micro, imediata/intermediária
-- [ ] T24.2 Revisar contraste, foco e `aria` na busca e no mapa
-- [ ] T24.3 Preferência de tema (claro/escuro) se couber no design atual
-
 #### US-25 — Testes E2E e CI
 
 - [ ] T25.1 Playwright: fluxo Home → UF → município
@@ -206,3 +200,9 @@ _(nenhuma)_
 - [x] T23.1 Manifest + service worker básico
 - [x] T23.2 Ícones e nome instalável
 - [x] T23.3 Revisar layout touch (mapa, busca, listas longas)
+
+### US-24 — Glossário e acessibilidade
+
+- [x] T24.1 Página/glossário: código IBGE, meso/micro, imediata/intermediária
+- [x] T24.2 Revisar contraste, foco e `aria` na busca e no mapa
+- [x] T24.3 Preferência de tema (claro/escuro) se couber no design atual

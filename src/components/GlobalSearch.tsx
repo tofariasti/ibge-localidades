@@ -23,6 +23,8 @@ const KIND_LABEL: Record<SearchHit['kind'], string> = {
 export function GlobalSearch() {
   const navigate = useNavigate()
   const listId = useId()
+  const hintId = useId()
+  const statusId = useId()
   const rootRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -92,12 +94,25 @@ export function GlobalSearch() {
   }
 
   const showPanel = open && (query.trim().length > 0 || loading || !!error)
+  const statusText = loading && !data
+    ? 'Carregando índice de busca.'
+    : error && !data
+      ? error
+      : data && query.trim()
+        ? results.length === 0
+          ? 'Nenhum resultado.'
+          : `${results.length} resultado${results.length === 1 ? '' : 's'} disponíveis. Use as setas e Enter.`
+        : ''
 
   return (
     <div className="global-search" ref={rootRef}>
       <label className="global-search__label" htmlFor={`${listId}-input`}>
-        Buscar
+        Buscar localidade
       </label>
+      <p id={hintId} className="global-search__hint">
+        Busque por nome, sigla de UF ou código IBGE. Setas e Enter navegam nos
+        resultados.
+      </p>
       <input
         ref={inputRef}
         id={`${listId}-input`}
@@ -107,6 +122,9 @@ export function GlobalSearch() {
         aria-expanded={showPanel}
         aria-controls={listId}
         aria-autocomplete="list"
+        aria-haspopup="listbox"
+        aria-busy={loading && !data}
+        aria-describedby={`${hintId} ${statusId}`}
         aria-activedescendant={
           showPanel && results[safeIndex]
             ? `${listId}-option-${safeIndex}`
@@ -126,6 +144,9 @@ export function GlobalSearch() {
         }}
         onKeyDown={onKeyDown}
       />
+      <div id={statusId} className="visually-hidden" role="status" aria-live="polite">
+        {statusText}
+      </div>
 
       {showPanel && (
         <div className="global-search__panel" id={listId} role="listbox">
@@ -133,7 +154,7 @@ export function GlobalSearch() {
             <p className="global-search__status">Carregando índice…</p>
           )}
           {error && !data && (
-            <p className="global-search__status global-search__status--error">
+            <p className="global-search__status global-search__status--error" role="alert">
               {error}
             </p>
           )}

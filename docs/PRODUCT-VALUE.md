@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-23 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-24** (glossário e acessibilidade). Pedido típico:
+US-24 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-25** (testes E2E e CI). Pedido típico:
 
-> Implemente a US-24 — glossário e acessibilidade.
+> Implemente a US-25 — testes E2E e CI.
