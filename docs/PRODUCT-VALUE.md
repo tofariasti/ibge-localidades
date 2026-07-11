@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-21 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-22** (compartilhar views com filtros). Pedido típico:
+US-22 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-23** (PWA e mobile). Pedido típico:
 
-> Implemente a US-22 — compartilhar views com filtros.
+> Implemente a US-23 — PWA e mobile.

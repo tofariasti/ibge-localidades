@@ -1,11 +1,30 @@
-import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { getPopulacaoPorUf } from '../api/indicadoresService'
 import { BrazilMap, type BrazilMapMode } from '../components/BrazilMap'
+import { CopyViewLink } from '../components/CopyViewLink'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 
+function parseMapMode(raw: string | null): BrazilMapMode {
+  return raw === 'indicador' ? 'indicator' : 'navigation'
+}
+
 export function Home() {
-  const [mapMode, setMapMode] = useState<BrazilMapMode>('navigation')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const mapMode = parseMapMode(searchParams.get('mapa'))
+
+  function setMapMode(mode: BrazilMapMode) {
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev)
+        if (mode === 'indicator') next.set('mapa', 'indicador')
+        else next.delete('mapa')
+        return next
+      },
+      { replace: true },
+    )
+  }
+
   const {
     data: indicatorSeries,
     loading: indicatorLoading,
@@ -22,31 +41,34 @@ export function Home() {
         federativas e municípios.
       </p>
 
-      <div className="map-mode-toggle" role="group" aria-label="Modo do mapa">
-        <button
-          type="button"
-          className={
-            mapMode === 'navigation'
-              ? 'map-mode-toggle__btn is-active'
-              : 'map-mode-toggle__btn'
-          }
-          aria-pressed={mapMode === 'navigation'}
-          onClick={() => setMapMode('navigation')}
-        >
-          Navegação
-        </button>
-        <button
-          type="button"
-          className={
-            mapMode === 'indicator'
-              ? 'map-mode-toggle__btn is-active'
-              : 'map-mode-toggle__btn'
-          }
-          aria-pressed={mapMode === 'indicator'}
-          onClick={() => setMapMode('indicator')}
-        >
-          Indicador
-        </button>
+      <div className="home__toolbar">
+        <div className="map-mode-toggle" role="group" aria-label="Modo do mapa">
+          <button
+            type="button"
+            className={
+              mapMode === 'navigation'
+                ? 'map-mode-toggle__btn is-active'
+                : 'map-mode-toggle__btn'
+            }
+            aria-pressed={mapMode === 'navigation'}
+            onClick={() => setMapMode('navigation')}
+          >
+            Navegação
+          </button>
+          <button
+            type="button"
+            className={
+              mapMode === 'indicator'
+                ? 'map-mode-toggle__btn is-active'
+                : 'map-mode-toggle__btn'
+            }
+            aria-pressed={mapMode === 'indicator'}
+            onClick={() => setMapMode('indicator')}
+          >
+            Indicador
+          </button>
+        </div>
+        <CopyViewLink />
       </div>
 
       <BrazilMap

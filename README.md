@@ -119,6 +119,7 @@ Na comparação, use `?ids=` com até 3 tokens separados por vírgula: `uf:35` (
 
 Nos rankings, use `?indicador=` com `populacao` (padrão), `area` ou `densidade` (Censo 2022).
 
+Filtros de lista usam `?q=` (texto). Na Home, o mapa coroplético usa `?mapa=indicador`. Use **Copiar link desta view** para compartilhar a URL atual com esses parâmetros.
 ## Exemplos de API (curl)
 
 Base: `https://servicodados.ibge.gov.br/api/v1/localidades`
@@ -204,6 +205,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Mapa coroplético** na Home (toggle navegação / indicador) com população por UF
 - **Comparar** até 3 municípios ou UFs em `/comparar` (códigos, hierarquia, indicadores; link compartilhável via `?ids=`)
 - **Salvos** em `/salvos`: favoritar região/UF/município e ver histórico recente (ambos em `localStorage`)
+- **Links de view**: filtros (`?q=`), mapa (`?mapa=indicador`), rankings (`?indicador=`) e comparar (`?ids=`) — botão “Copiar link desta view”
 - **Rankings** de UFs e de municípios por UF (população, área ou densidade — Censo 2022), com link para o detalhe
 ## Scripts
 
@@ -251,3 +253,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 19. `feat: comparação lado a lado de municípios e UFs`
 20. `feat: rankings de UFs e municípios por indicador do Censo 2022`
 21. `feat: favoritos e histórico local de consultas`
+22. `feat: sincroniza filtros e mapa na URL para compartilhar views`

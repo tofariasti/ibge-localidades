@@ -6,6 +6,7 @@ import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
 import { RankingIndicatorToggle } from '../components/RankingIndicatorToggle'
 import { RankingTable } from '../components/RankingTable'
+import { CopyViewLink } from '../components/CopyViewLink'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import { parseRankingIndicator } from '../lib/rankingIndicators'
 
@@ -20,7 +21,14 @@ export function RankingUfs() {
 
   const setIndicator = useCallback(
     (key: typeof indicator) => {
-      setSearchParams({ indicador: key }, { replace: true })
+      setSearchParams(
+        (prev) => {
+          const next = new URLSearchParams(prev)
+          next.set('indicador', key)
+          return next
+        },
+        { replace: true },
+      )
     },
     [setSearchParams],
   )
@@ -40,7 +48,10 @@ export function RankingUfs() {
         (Censo 2022). Clique em uma linha para abrir o detalhe.
       </p>
 
-      <RankingIndicatorToggle value={indicator} onChange={setIndicator} />
+      <div className="home__toolbar">
+        <RankingIndicatorToggle value={indicator} onChange={setIndicator} />
+        <CopyViewLink />
+      </div>
 
       {loading && <Loading />}
       {error && !data && (

@@ -213,7 +213,7 @@ export function Comparar() {
               className="button button--secondary"
               onClick={copyShareLink}
             >
-              Copiar link
+              Copiar link desta view
             </button>
           )}
         </div>

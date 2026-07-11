@@ -5,6 +5,7 @@ import {
   downloadJson,
   type CsvColumn,
 } from '../lib/exportData'
+import { CopyViewLink } from './CopyViewLink'
 
 type ListExportActionsProps<T> = {
   items: T[]
@@ -64,6 +65,7 @@ export function ListExportActions<T>({
         >
           Copiar URL da API
         </button>
+        <CopyViewLink />
       </div>
       {message && (
         <p className="action-bar__feedback" role="status" aria-live="polite">

@@ -14,12 +14,6 @@ _(nenhuma)_
 
 ### Fase 4 — Retenção e polimento
 
-#### US-22 — Compartilhar views com filtros
-
-- [ ] T22.1 Sync busca/filtro com query string
-- [ ] T22.2 Sync coropleto/indicador com query string
-- [ ] T22.3 Botão “Copiar link desta view”
-
 #### US-23 — PWA e mobile
 
 - [ ] T23.1 Manifest + service worker básico
@@ -206,3 +200,9 @@ _(nenhuma)_
 - [x] T21.2 Página ou drawer de favoritos
 - [x] T21.3 Histórico das últimas consultas
 - [x] T21.4 Limpar histórico / remover favorito
+
+### US-22 — Compartilhar views com filtros
+
+- [x] T22.1 Sync busca/filtro com query string
+- [x] T22.2 Sync coropleto/indicador com query string
+- [x] T22.3 Botão “Copiar link desta view”
