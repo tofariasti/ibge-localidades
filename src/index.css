@@ -286,6 +286,65 @@ a:hover {
   margin-top: 1.5rem;
 }
 
+.indicadores {
+  margin: 1.25rem 0;
+  padding: 1rem 1.15rem;
+  background: #fff;
+  border: 1px solid #dde1e6;
+  border-radius: 8px;
+}
+
+.indicadores__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+}
+
+.indicadores__lead {
+  margin: 0 0 0.85rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.indicadores__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.85rem 1.25rem;
+  margin: 0;
+}
+
+.indicadores__item {
+  margin: 0;
+}
+
+.indicadores__item dt {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.indicadores__item dd {
+  margin: 0.15rem 0 0;
+}
+
+.indicadores__value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.indicadores__unit {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.indicadores__source {
+  margin: 0.85rem 0 0;
+  font-size: 0.75rem;
+  color: #777;
+}
+
 .brazil-map {
   background: #fff;
   border: 1px solid #dde1e6;

@@ -139,6 +139,13 @@ Nas telas do app, **Ver na API** / **Copiar URL da API** montam a mesma URL via 
 | Detalhe de município | `/municipios/{id}` |
 | Todos os municípios (busca) | `/municipios?orderBy=nome` |
 
+Indicadores demográficos (Censo 2022) usam a [API de Agregados v3](https://servicodados.ibge.gov.br/api/docs/agregados): tabela **4714** (população, área, densidade) em `N3` (UF) e `N6` (município).
+
+| Tela | Agregado |
+|------|----------|
+| Indicadores da UF | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N3[{id}]` |
+| Indicadores do município | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N6[{id}]` |
+
 ```bash
 # Regiões
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes?orderBy=nome"
@@ -164,6 +171,10 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/paises/76"
 # Município São Paulo (capital)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 
+# Indicadores Censo 2022 (Agregados) — SP estado e capital
+curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N3%5B35%5D"
+curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N6%5B3550308%5D"
+
 # Todos os municípios (índice da busca global)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome" | head -c 200
 ```
@@ -174,6 +185,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Filtro local** nas listas de regiões, estados e municípios, com contagem
 - **Copiar** código IBGE / JSON nos detalhes; **exportar** CSV/JSON da lista filtrada
 - **Ver / copiar URL** da API oficial correspondente à tela
+- **Indicadores** (população, área, densidade) no detalhe de UF e município — Censo 2022 via Agregados
 ## Scripts
 
 | Comando | Descrição |
@@ -215,3 +227,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 14. `feat: mesorregiões e microrregiões com navegação cruzada`
 15. `feat: regiões intermediárias e imediatas com navegação cruzada`
 16. `feat: países com códigos M49/ISO e entrada na Home`
+17. `feat: indicadores demográficos no detalhe de UF e município`

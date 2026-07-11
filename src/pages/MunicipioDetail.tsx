@@ -5,6 +5,7 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { DetailActions } from '../components/DetailActions'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { IndicadoresPanel } from '../components/IndicadoresPanel'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import type { Municipio, UF } from '../types/localidades'
@@ -153,6 +154,8 @@ export function MunicipioDetail() {
           </>
         )}
       </dl>
+
+      <IndicadoresPanel level="municipio" id={data.id} />
 
       <DetailActions
         code={data.id}

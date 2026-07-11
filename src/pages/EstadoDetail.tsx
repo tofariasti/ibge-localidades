@@ -6,6 +6,7 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { DetailActions } from '../components/DetailActions'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { IndicadoresPanel } from '../components/IndicadoresPanel'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 
@@ -53,6 +54,8 @@ export function EstadoDetail() {
           </Link>
         </dd>
       </dl>
+
+      <IndicadoresPanel level="estado" id={data.id} />
 
       <DetailActions
         code={data.id}

@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-Fase 2 concluída. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-17** (indicadores) ou **US-18** (mapa coroplético). Pedido típico:
+US-17 concluída. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-18** (mapa coroplético). Pedido típico:
 
-> Implemente a US-17 — indicadores no detalhe.
+> Implemente a US-18 — mapa coroplético.

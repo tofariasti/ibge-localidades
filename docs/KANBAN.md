@@ -14,13 +14,6 @@ _(nenhuma)_
 
 ### Fase 3 — Contexto analítico
 
-#### US-17 — Indicadores no detalhe
-
-- [ ] T17.1 Escolher fonte estável (ex.: população/área via SIDRA ou endpoint disponível)
-- [ ] T17.2 Painel de indicadores em `MunicipioDetail` e `EstadoDetail`
-- [ ] T17.3 Loading/erro isolados do restante da página
-- [ ] T17.4 Fonte e data da consulta visíveis (“dados IBGE”)
-
 #### US-18 — Mapa coropleto
 
 - [ ] T18.1 Camada de dados por UF (um indicador)
@@ -208,3 +201,10 @@ _(nenhuma)_
 - [x] T16.1 Tipos e service `/paises`
 - [x] T16.2 Lista e detalhe de país
 - [x] T16.3 Entrada na Home / nav (secundária)
+
+### US-17 — Indicadores no detalhe
+
+- [x] T17.1 Escolher fonte estável (ex.: população/área via SIDRA ou endpoint disponível)
+- [x] T17.2 Painel de indicadores em `MunicipioDetail` e `EstadoDetail`
+- [x] T17.3 Loading/erro isolados do restante da página
+- [x] T17.4 Fonte e data da consulta visíveis (“dados IBGE”)
