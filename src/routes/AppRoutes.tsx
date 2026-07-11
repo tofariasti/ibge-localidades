@@ -22,12 +22,14 @@ import { Rankings } from '../pages/Rankings'
 import { RankingUfs } from '../pages/RankingUfs'
 import { RankingMunicipios } from '../pages/RankingMunicipios'
 import { RankingMunicipiosUf } from '../pages/RankingMunicipiosUf'
+import { Salvos } from '../pages/Salvos'
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="salvos" element={<Salvos />} />
         <Route path="regioes" element={<RegioesList />} />
         <Route path="regioes/:id" element={<RegiaoDetail />} />
         <Route path="estados" element={<EstadosList />} />

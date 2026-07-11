@@ -6,8 +6,10 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { DetailActions } from '../components/DetailActions'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { FavoriteButton } from '../components/FavoriteButton'
 import { IndicadoresPanel } from '../components/IndicadoresPanel'
 import { Loading } from '../components/Loading'
+import { TrackVisit } from '../components/TrackVisit'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 
 export function EstadoDetail() {
@@ -28,6 +30,12 @@ export function EstadoDetail() {
 
   return (
     <section className="page">
+      <TrackVisit
+        kind="estado"
+        id={data.id}
+        label={`${data.nome} (${data.sigla})`}
+        to={`/estados/${data.id}`}
+      />
       <Breadcrumb
         items={[
           { label: 'Início', to: '/' },
@@ -39,6 +47,15 @@ export function EstadoDetail() {
       <h1>
         {data.nome} ({data.sigla})
       </h1>
+
+      <p className="action-bar__buttons">
+        <FavoriteButton
+          kind="estado"
+          id={data.id}
+          label={`${data.nome} (${data.sigla})`}
+          to={`/estados/${data.id}`}
+        />
+      </p>
 
       <BrazilMap activeStateId={data.id} />
 

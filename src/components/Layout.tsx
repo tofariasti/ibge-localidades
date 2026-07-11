@@ -14,6 +14,7 @@ export function Layout() {
           <Link to="/estados">Estados</Link>
           <Link to="/rankings">Rankings</Link>
           <Link to="/comparar">Comparar</Link>
+          <Link to="/salvos">Salvos</Link>
           <Link to="/paises">Países</Link>
         </nav>
       </header>

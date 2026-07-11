@@ -14,13 +14,6 @@ _(nenhuma)_
 
 ### Fase 4 — Retenção e polimento
 
-#### US-21 — Favoritos e histórico
-
-- [ ] T21.1 Favoritar região / UF / município (`localStorage`)
-- [ ] T21.2 Página ou drawer de favoritos
-- [ ] T21.3 Histórico das últimas consultas
-- [ ] T21.4 Limpar histórico / remover favorito
-
 #### US-22 — Compartilhar views com filtros
 
 - [ ] T22.1 Sync busca/filtro com query string
@@ -206,3 +199,10 @@ _(nenhuma)_
 - [x] T20.1 Ranking de municípios da UF por indicador (quando houver dado)
 - [x] T20.2 Ranking de UFs por indicador
 - [x] T20.3 Links do ranking para o detalhe
+
+### US-21 — Favoritos e histórico
+
+- [x] T21.1 Favoritar região / UF / município (`localStorage`)
+- [x] T21.2 Página ou drawer de favoritos
+- [x] T21.3 Histórico das últimas consultas
+- [x] T21.4 Limpar histórico / remover favorito

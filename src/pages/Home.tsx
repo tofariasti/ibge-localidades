@@ -76,6 +76,10 @@ export function Home() {
           <h2>Comparar</h2>
           <p>Até 3 municípios ou UFs lado a lado</p>
         </Link>
+        <Link to="/salvos" className="card">
+          <h2>Salvos</h2>
+          <p>Favoritos e histórico neste navegador</p>
+        </Link>
         <Link to="/paises" className="card">
           <h2>Países</h2>
           <p>Países e áreas com códigos M49 e ISO</p>

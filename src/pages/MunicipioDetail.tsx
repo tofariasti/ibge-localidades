@@ -5,8 +5,10 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { DetailActions } from '../components/DetailActions'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { FavoriteButton } from '../components/FavoriteButton'
 import { IndicadoresPanel } from '../components/IndicadoresPanel'
 import { Loading } from '../components/Loading'
+import { TrackVisit } from '../components/TrackVisit'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import type { Municipio, UF } from '../types/localidades'
 
@@ -44,6 +46,12 @@ export function MunicipioDetail() {
 
   return (
     <section className="page">
+      <TrackVisit
+        kind="municipio"
+        id={data.id}
+        label={data.nome}
+        to={`/municipios/${data.id}`}
+      />
       <Breadcrumb
         items={[
           { label: 'Início', to: '/' },
@@ -102,6 +110,16 @@ export function MunicipioDetail() {
         ]}
       />
       <h1>{data.nome}</h1>
+
+      <p className="action-bar__buttons">
+        <FavoriteButton
+          kind="municipio"
+          id={data.id}
+          label={data.nome}
+          to={`/municipios/${data.id}`}
+        />
+      </p>
+
       <dl className="detail">
         <dt>ID</dt>
         <dd>{data.id}</dd>

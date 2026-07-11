@@ -109,6 +109,7 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/paises/:id` | Detalhe do país (código M49) |
 | `/municipios/:id` | Detalhe do município |
 | `/comparar` | Comparação lado a lado (query `ids`) |
+| `/salvos` | Favoritos e histórico local |
 | `/rankings` | Hub de rankings (UFs e municípios) |
 | `/rankings/ufs` | Ranking de UFs por indicador (query `indicador`) |
 | `/rankings/municipios` | Escolha de UF para ranking municipal |
@@ -202,6 +203,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Indicadores** (população, área, densidade) no detalhe de UF e município — Censo 2022 via Agregados
 - **Mapa coroplético** na Home (toggle navegação / indicador) com população por UF
 - **Comparar** até 3 municípios ou UFs em `/comparar` (códigos, hierarquia, indicadores; link compartilhável via `?ids=`)
+- **Salvos** em `/salvos`: favoritar região/UF/município e ver histórico recente (ambos em `localStorage`)
 - **Rankings** de UFs e de municípios por UF (população, área ou densidade — Censo 2022), com link para o detalhe
 ## Scripts
 
@@ -248,3 +250,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 18. `feat: mapa coroplético de população por UF na Home`
 19. `feat: comparação lado a lado de municípios e UFs`
 20. `feat: rankings de UFs e municípios por indicador do Censo 2022`
+21. `feat: favoritos e histórico local de consultas`

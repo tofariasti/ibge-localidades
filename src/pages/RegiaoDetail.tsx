@@ -6,7 +6,9 @@ import { Breadcrumb } from '../components/Breadcrumb'
 import { DataList } from '../components/DataList'
 import { DetailActions } from '../components/DetailActions'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { FavoriteButton } from '../components/FavoriteButton'
 import { Loading } from '../components/Loading'
+import { TrackVisit } from '../components/TrackVisit'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import type { UF } from '../types/localidades'
 
@@ -34,6 +36,12 @@ export function RegiaoDetail() {
 
   return (
     <section className="page">
+      <TrackVisit
+        kind="regiao"
+        id={regiao.id}
+        label={regiao.nome}
+        to={`/regioes/${regiao.id}`}
+      />
       <Breadcrumb
         items={[
           { label: 'Início', to: '/' },
@@ -42,6 +50,15 @@ export function RegiaoDetail() {
         ]}
       />
       <h1>{regiao.nome}</h1>
+
+      <p className="action-bar__buttons">
+        <FavoriteButton
+          kind="regiao"
+          id={regiao.id}
+          label={regiao.nome}
+          to={`/regioes/${regiao.id}`}
+        />
+      </p>
 
       <BrazilMap highlightRegionId={regiao.id} />
 

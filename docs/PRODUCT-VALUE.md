@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-20 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-21** (favoritos e histórico). Pedido típico:
+US-21 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-22** (compartilhar views com filtros). Pedido típico:
 
-> Implemente a US-21 — favoritos e histórico.
+> Implemente a US-22 — compartilhar views com filtros.
