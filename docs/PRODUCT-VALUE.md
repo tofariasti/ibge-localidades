@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-Seguir a Fase 2 do [KANBAN](./KANBAN.md): **US-15** (regiões intermediárias e imediatas). Pedido típico:
+Seguir a Fase 2 do [KANBAN](./KANBAN.md): **US-16** (países) ou avançar para Fase 3 (indicadores / mapa). Pedido típico:
 
-> Implemente a US-15 — regiões intermediárias e imediatas.
+> Implemente a US-16 — países.

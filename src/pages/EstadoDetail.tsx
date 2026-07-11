@@ -76,6 +76,18 @@ export function EstadoDetail() {
         >
           Ver microrregiões
         </Link>
+        <Link
+          to={`/estados/${data.id}/regioes-intermediarias`}
+          className="button button--secondary"
+        >
+          Ver intermediárias
+        </Link>
+        <Link
+          to={`/estados/${data.id}/regioes-imediatas`}
+          className="button button--secondary"
+        >
+          Ver imediatas
+        </Link>
       </p>
       <p>
         <Link to="/estados">← Voltar para estados</Link>

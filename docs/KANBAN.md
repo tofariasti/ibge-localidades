@@ -14,13 +14,6 @@ _(nenhuma)_
 
 ### Fase 2 — Hierarquia territorial completa
 
-#### US-15 — Regiões intermediárias e imediatas
-
-- [ ] T15.1 Tipos e service (intermediárias / imediatas)
-- [ ] T15.2 Telas de listagem e detalhe
-- [ ] T15.3 Integração na navegação do município e da UF
-- [ ] T15.4 Breadcrumb atualizado
-
 #### US-16 — Países
 
 - [ ] T16.1 Tipos e service `/paises`
@@ -210,3 +203,10 @@ _(nenhuma)_
 - [x] T14.3 Listagem e detalhe de microrregião
 - [x] T14.4 Links cruzados: UF ↔ meso ↔ micro ↔ município
 - [x] T14.5 Breadcrumb atualizado
+
+### US-15 — Regiões intermediárias e imediatas
+
+- [x] T15.1 Tipos e service (intermediárias / imediatas)
+- [x] T15.2 Telas de listagem e detalhe
+- [x] T15.3 Integração na navegação do município e da UF
+- [x] T15.4 Breadcrumb atualizado

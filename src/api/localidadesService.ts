@@ -5,6 +5,8 @@ import type {
   Microrregiao,
   Municipio,
   Regiao,
+  RegiaoImediata,
+  RegiaoIntermediaria,
   UF,
 } from '../types/localidades'
 
@@ -90,4 +92,49 @@ export function getMunicipiosPorMicrorregiao(
   return listFetch<Municipio[]>(`/microrregioes/${microrregiaoId}/municipios`, {
     orderBy: 'nome',
   })
+}
+
+export function getRegioesIntermediariasPorUF(
+  ufId: number | string,
+): Promise<RegiaoIntermediaria[]> {
+  return listFetch<RegiaoIntermediaria[]>(
+    `/estados/${ufId}/regioes-intermediarias`,
+    { orderBy: 'nome' },
+  )
+}
+
+export function getRegiaoIntermediaria(
+  id: number | string,
+): Promise<RegiaoIntermediaria> {
+  return ibgeFetch<RegiaoIntermediaria>(`/regioes-intermediarias/${id}`)
+}
+
+export function getRegioesImediatasPorUF(
+  ufId: number | string,
+): Promise<RegiaoImediata[]> {
+  return listFetch<RegiaoImediata[]>(`/estados/${ufId}/regioes-imediatas`, {
+    orderBy: 'nome',
+  })
+}
+
+export function getRegioesImediatasPorIntermediaria(
+  intermediariaId: number | string,
+): Promise<RegiaoImediata[]> {
+  return listFetch<RegiaoImediata[]>(
+    `/regioes-intermediarias/${intermediariaId}/regioes-imediatas`,
+    { orderBy: 'nome' },
+  )
+}
+
+export function getRegiaoImediata(id: number | string): Promise<RegiaoImediata> {
+  return ibgeFetch<RegiaoImediata>(`/regioes-imediatas/${id}`)
+}
+
+export function getMunicipiosPorRegiaoImediata(
+  imediataId: number | string,
+): Promise<Municipio[]> {
+  return listFetch<Municipio[]>(
+    `/regioes-imediatas/${imediataId}/municipios`,
+    { orderBy: 'nome' },
+  )
 }

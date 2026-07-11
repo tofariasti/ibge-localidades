@@ -11,6 +11,10 @@ import { MesorregioesList } from '../pages/MesorregioesList'
 import { MesorregiaoDetail } from '../pages/MesorregiaoDetail'
 import { MicrorregioesList } from '../pages/MicrorregioesList'
 import { MicrorregiaoDetail } from '../pages/MicrorregiaoDetail'
+import { RegioesIntermediariasList } from '../pages/RegioesIntermediariasList'
+import { RegiaoIntermediariaDetail } from '../pages/RegiaoIntermediariaDetail'
+import { RegioesImediatasList } from '../pages/RegioesImediatasList'
+import { RegiaoImediataDetail } from '../pages/RegiaoImediataDetail'
 
 export function AppRoutes() {
   return (
@@ -30,8 +34,21 @@ export function AppRoutes() {
           path="estados/:id/microrregioes"
           element={<MicrorregioesList />}
         />
+        <Route
+          path="estados/:id/regioes-intermediarias"
+          element={<RegioesIntermediariasList />}
+        />
+        <Route
+          path="estados/:id/regioes-imediatas"
+          element={<RegioesImediatasList />}
+        />
         <Route path="mesorregioes/:id" element={<MesorregiaoDetail />} />
         <Route path="microrregioes/:id" element={<MicrorregiaoDetail />} />
+        <Route
+          path="regioes-intermediarias/:id"
+          element={<RegiaoIntermediariaDetail />}
+        />
+        <Route path="regioes-imediatas/:id" element={<RegiaoImediataDetail />} />
         <Route path="municipios/:id" element={<MunicipioDetail />} />
       </Route>
     </Routes>

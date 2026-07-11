@@ -23,7 +23,7 @@ export interface Microrregiao {
   mesorregiao: Mesorregiao
 }
 
-export interface RegiaoIntermediariaRef {
+export interface RegiaoIntermediaria {
   id: number
   nome: string
   UF: UF
@@ -32,7 +32,7 @@ export interface RegiaoIntermediariaRef {
 export interface RegiaoImediata {
   id: number
   nome: string
-  'regiao-intermediaria': RegiaoIntermediariaRef
+  'regiao-intermediaria': RegiaoIntermediaria
 }
 
 export interface Municipio {

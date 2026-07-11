@@ -38,6 +38,8 @@ export function MunicipioDetail() {
   const uf = getUfFromMunicipio(data)
   const microrregiao = data.microrregiao
   const mesorregiao = microrregiao?.mesorregiao
+  const imediata = data['regiao-imediata']
+  const intermediaria = imediata?.['regiao-intermediaria']
 
   return (
     <section className="page">
@@ -59,7 +61,18 @@ export function MunicipioDetail() {
                         to: `/mesorregioes/${mesorregiao.id}`,
                       },
                     ]
-                  : []),
+                  : intermediaria
+                    ? [
+                        {
+                          label: 'Regiões intermediárias',
+                          to: `/estados/${uf.id}/regioes-intermediarias`,
+                        },
+                        {
+                          label: intermediaria.nome,
+                          to: `/regioes-intermediarias/${intermediaria.id}`,
+                        },
+                      ]
+                    : []),
                 ...(microrregiao
                   ? [
                       {
@@ -67,14 +80,21 @@ export function MunicipioDetail() {
                         to: `/microrregioes/${microrregiao.id}`,
                       },
                     ]
-                  : mesorregiao
-                    ? []
-                    : [
+                  : imediata
+                    ? [
                         {
-                          label: 'Municípios',
-                          to: `/estados/${uf.id}/municipios`,
+                          label: imediata.nome,
+                          to: `/regioes-imediatas/${imediata.id}`,
                         },
-                      ]),
+                      ]
+                    : mesorregiao || intermediaria
+                      ? []
+                      : [
+                          {
+                            label: 'Municípios',
+                            to: `/estados/${uf.id}/municipios`,
+                          },
+                        ]),
               ]
             : []),
           { label: data.nome },
@@ -116,12 +136,20 @@ export function MunicipioDetail() {
             </dd>
           </>
         )}
-        {data['regiao-imediata'] && (
+        {imediata && intermediaria && (
           <>
             <dt>Região imediata</dt>
-            <dd>{data['regiao-imediata'].nome}</dd>
+            <dd>
+              <Link to={`/regioes-imediatas/${imediata.id}`}>
+                {imediata.nome}
+              </Link>
+            </dd>
             <dt>Região intermediária</dt>
-            <dd>{data['regiao-imediata']['regiao-intermediaria'].nome}</dd>
+            <dd>
+              <Link to={`/regioes-intermediarias/${intermediaria.id}`}>
+                {intermediaria.nome}
+              </Link>
+            </dd>
           </>
         )}
       </dl>
