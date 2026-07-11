@@ -131,6 +131,10 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 | `npm run lint` | ESLint |
 | `npm run generate:map` | Regenera `src/data/brazilMap.generated.json` via API de Malhas IBGE |
 
+## Cache
+
+Listagens estáveis (regiões, UFs, municípios por UF, UFs por região) usam cache em memória + `localStorage` (TTL 24h). Detalhes individuais sempre vão à API.
+
 ## Kanban
 
 Tarefas e user stories em [docs/KANBAN.md](docs/KANBAN.md).
@@ -146,3 +150,5 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 5. `feat: telas de unidades federativas`
 6. `feat: telas de municípios por UF e detalhe`
 7. `docs: polimento UI e documentação de uso`
+8. `feat: mapa interativo do Brasil (malha IBGE)`
+9. `feat: cache, retry e empty state nas consultas IBGE`
