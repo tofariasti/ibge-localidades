@@ -6,19 +6,26 @@ import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import type { Regiao } from '../types/localidades'
 
 export function RegioesList() {
-  const { data, loading, error, refetch } = useIbgeQuery(getRegioes)
+  const { data, loading, error, refetch, refetching } = useIbgeQuery(getRegioes)
 
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={refetch} />
-  if (!data?.length) return <p>Nenhuma região encontrada.</p>
+  if (error && !data) {
+    return (
+      <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+    )
+  }
 
   return (
     <section className="page">
       <h1>Regiões</h1>
+      {error && (
+        <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+      )}
       <DataList<Regiao>
-        items={data}
+        items={data ?? []}
         getRowKey={(r) => r.id}
         getRowLink={(r) => `/regioes/${r.id}`}
+        emptyMessage="Nenhuma região encontrada."
         columns={[
           { header: 'ID', render: (r) => r.id },
           { header: 'Sigla', render: (r) => r.sigla },

@@ -7,19 +7,26 @@ import { useIbgeQuery } from '../hooks/useIbgeQuery'
 import type { UF } from '../types/localidades'
 
 export function EstadosList() {
-  const { data, loading, error, refetch } = useIbgeQuery(getEstados)
+  const { data, loading, error, refetch, refetching } = useIbgeQuery(getEstados)
 
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={refetch} />
-  if (!data?.length) return <p>Nenhum estado encontrado.</p>
+  if (error && !data) {
+    return (
+      <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+    )
+  }
 
   return (
     <section className="page">
       <h1>Estados (UF)</h1>
+      {error && (
+        <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+      )}
       <DataList<UF>
-        items={data}
+        items={data ?? []}
         getRowKey={(uf) => uf.id}
         getRowLink={(uf) => `/estados/${uf.id}`}
+        emptyMessage="Nenhum estado encontrado."
         columns={[
           { header: 'ID', render: (uf) => uf.id },
           { header: 'Sigla', render: (uf) => uf.sigla },

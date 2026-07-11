@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { EmptyState } from './EmptyState'
 
 export interface DataListColumn<T> {
   header: string
@@ -11,6 +12,7 @@ interface DataListProps<T> {
   columns: DataListColumn<T>[]
   getRowKey: (item: T) => string | number
   getRowLink?: (item: T) => string
+  emptyMessage?: string
 }
 
 export function DataList<T>({
@@ -18,7 +20,12 @@ export function DataList<T>({
   columns,
   getRowKey,
   getRowLink,
+  emptyMessage = 'Nenhum item encontrado.',
 }: DataListProps<T>) {
+  if (items.length === 0) {
+    return <EmptyState message={emptyMessage} />
+  }
+
   return (
     <table className="data-list">
       <thead>

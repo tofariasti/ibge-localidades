@@ -2,18 +2,26 @@ import { Link, useParams } from 'react-router-dom'
 import { getEstado } from '../api/localidadesService'
 import { BrazilMap } from '../components/BrazilMap'
 import { Breadcrumb } from '../components/Breadcrumb'
+import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
 
 export function EstadoDetail() {
   const { id } = useParams<{ id: string }>()
-  const { data, loading, error, refetch } = useIbgeQuery(() => getEstado(id!), [id])
+  const { data, loading, error, refetch, refetching } = useIbgeQuery(
+    () => getEstado(id!),
+    [id],
+  )
 
   if (!id) return <ErrorMessage message="Estado não informado." />
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={refetch} />
-  if (!data) return <p>Estado não encontrado.</p>
+  if (error && !data) {
+    return (
+      <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+    )
+  }
+  if (!data) return <EmptyState message="Estado não encontrado." />
 
   return (
     <section className="page">

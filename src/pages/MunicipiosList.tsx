@@ -17,8 +17,14 @@ export function MunicipiosList() {
 
   if (estadoQuery.loading || municipiosQuery.loading) return <Loading />
 
-  if (estadoQuery.error) {
-    return <ErrorMessage message={estadoQuery.error} onRetry={estadoQuery.refetch} />
+  if (estadoQuery.error && !estadoQuery.data) {
+    return (
+      <ErrorMessage
+        message={estadoQuery.error}
+        onRetry={estadoQuery.refetch}
+        retrying={estadoQuery.refetching}
+      />
+    )
   }
 
   const estado = estadoQuery.data!
@@ -37,21 +43,25 @@ export function MunicipiosList() {
         Municípios — {estado.nome} ({estado.sigla})
       </h1>
 
-      {municipiosQuery.error ? (
-        <ErrorMessage message={municipiosQuery.error} onRetry={municipiosQuery.refetch} />
-      ) : municipiosQuery.data?.length ? (
+      {municipiosQuery.error && (
+        <ErrorMessage
+          message={municipiosQuery.error}
+          onRetry={municipiosQuery.refetch}
+          retrying={municipiosQuery.refetching}
+        />
+      )}
+      {!municipiosQuery.error || municipiosQuery.data ? (
         <DataList<Municipio>
-          items={municipiosQuery.data}
+          items={municipiosQuery.data ?? []}
           getRowKey={(m) => m.id}
           getRowLink={(m) => `/municipios/${m.id}`}
+          emptyMessage="Nenhum município encontrado."
           columns={[
             { header: 'ID', render: (m) => m.id },
             { header: 'Nome', render: (m) => m.nome },
           ]}
         />
-      ) : (
-        <p>Nenhum município encontrado.</p>
-      )}
+      ) : null}
 
       <p>
         <Link to={`/estados/${estado.id}`}>← Voltar para {estado.sigla}</Link>

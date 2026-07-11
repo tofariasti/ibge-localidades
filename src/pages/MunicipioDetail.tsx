@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { getMunicipio } from '../api/localidadesService'
 import { Breadcrumb } from '../components/Breadcrumb'
+import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
@@ -18,12 +19,19 @@ function getUfFromMunicipio(municipio: Municipio): UF | null {
 
 export function MunicipioDetail() {
   const { id } = useParams<{ id: string }>()
-  const { data, loading, error, refetch } = useIbgeQuery(() => getMunicipio(id!), [id])
+  const { data, loading, error, refetch, refetching } = useIbgeQuery(
+    () => getMunicipio(id!),
+    [id],
+  )
 
   if (!id) return <ErrorMessage message="Município não informado." />
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={refetch} />
-  if (!data) return <p>Município não encontrado.</p>
+  if (error && !data) {
+    return (
+      <ErrorMessage message={error} onRetry={refetch} retrying={refetching} />
+    )
+  }
+  if (!data) return <EmptyState message="Município não encontrado." />
 
   const uf = getUfFromMunicipio(data)
   const microrregiao = data.microrregiao

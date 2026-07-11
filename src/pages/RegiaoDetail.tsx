@@ -18,8 +18,14 @@ export function RegiaoDetail() {
 
   if (regiaoQuery.loading || estadosQuery.loading) return <Loading />
 
-  if (regiaoQuery.error) {
-    return <ErrorMessage message={regiaoQuery.error} onRetry={regiaoQuery.refetch} />
+  if (regiaoQuery.error && !regiaoQuery.data) {
+    return (
+      <ErrorMessage
+        message={regiaoQuery.error}
+        onRetry={regiaoQuery.refetch}
+        retrying={regiaoQuery.refetching}
+      />
+    )
   }
 
   const regiao = regiaoQuery.data!
@@ -45,21 +51,25 @@ export function RegiaoDetail() {
       </dl>
 
       <h2>Unidades Federativas</h2>
-      {estadosQuery.error ? (
-        <ErrorMessage message={estadosQuery.error} onRetry={estadosQuery.refetch} />
-      ) : estadosQuery.data?.length ? (
+      {estadosQuery.error && (
+        <ErrorMessage
+          message={estadosQuery.error}
+          onRetry={estadosQuery.refetch}
+          retrying={estadosQuery.refetching}
+        />
+      )}
+      {(!estadosQuery.error || estadosQuery.data) && (
         <DataList<UF>
-          items={estadosQuery.data}
+          items={estadosQuery.data ?? []}
           getRowKey={(uf) => uf.id}
           getRowLink={(uf) => `/estados/${uf.id}`}
+          emptyMessage="Nenhum estado nesta região."
           columns={[
             { header: 'ID', render: (uf) => uf.id },
             { header: 'Sigla', render: (uf) => uf.sigla },
             { header: 'Nome', render: (uf) => uf.nome },
           ]}
         />
-      ) : (
-        <p>Nenhum estado nesta região.</p>
       )}
 
       <p>
