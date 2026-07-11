@@ -1,6 +1,12 @@
 import { buildCacheKey, cachedFetch } from './cache'
 import { ibgeFetch } from './ibgeClient'
-import type { Municipio, Regiao, UF } from '../types/localidades'
+import type {
+  Mesorregiao,
+  Microrregiao,
+  Municipio,
+  Regiao,
+  UF,
+} from '../types/localidades'
 
 function listFetch<T>(
   path: string,
@@ -43,4 +49,45 @@ export function getMunicipios(): Promise<Municipio[]> {
 
 export function getMunicipio(id: number | string): Promise<Municipio> {
   return ibgeFetch<Municipio>(`/municipios/${id}`)
+}
+
+export function getMesorregioesPorUF(
+  ufId: number | string,
+): Promise<Mesorregiao[]> {
+  return listFetch<Mesorregiao[]>(`/estados/${ufId}/mesorregioes`, {
+    orderBy: 'nome',
+  })
+}
+
+export function getMesorregiao(id: number | string): Promise<Mesorregiao> {
+  return ibgeFetch<Mesorregiao>(`/mesorregioes/${id}`)
+}
+
+export function getMicrorregioesPorUF(
+  ufId: number | string,
+): Promise<Microrregiao[]> {
+  return listFetch<Microrregiao[]>(`/estados/${ufId}/microrregioes`, {
+    orderBy: 'nome',
+  })
+}
+
+export function getMicrorregioesPorMesorregiao(
+  mesorregiaoId: number | string,
+): Promise<Microrregiao[]> {
+  return listFetch<Microrregiao[]>(
+    `/mesorregioes/${mesorregiaoId}/microrregioes`,
+    { orderBy: 'nome' },
+  )
+}
+
+export function getMicrorregiao(id: number | string): Promise<Microrregiao> {
+  return ibgeFetch<Microrregiao>(`/microrregioes/${id}`)
+}
+
+export function getMunicipiosPorMicrorregiao(
+  microrregiaoId: number | string,
+): Promise<Municipio[]> {
+  return listFetch<Municipio[]>(`/microrregioes/${microrregiaoId}/municipios`, {
+    orderBy: 'nome',
+  })
 }

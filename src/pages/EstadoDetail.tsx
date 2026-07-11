@@ -60,9 +60,21 @@ export function EstadoDetail() {
         apiUrl={buildIbgeApiUrl(`/estados/${data.id}`)}
       />
 
-      <p>
+      <p className="action-bar__buttons">
         <Link to={`/estados/${data.id}/municipios`} className="button">
           Ver municípios
+        </Link>
+        <Link
+          to={`/estados/${data.id}/mesorregioes`}
+          className="button button--secondary"
+        >
+          Ver mesorregiões
+        </Link>
+        <Link
+          to={`/estados/${data.id}/microrregioes`}
+          className="button button--secondary"
+        >
+          Ver microrregiões
         </Link>
       </p>
       <p>

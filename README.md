@@ -97,6 +97,10 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/estados` | Lista de todas as UFs |
 | `/estados/:id` | Detalhe da UF |
 | `/estados/:id/municipios` | Municípios da UF |
+| `/estados/:id/mesorregioes` | Mesorregiões da UF |
+| `/estados/:id/microrregioes` | Microrregiões da UF |
+| `/mesorregioes/:id` | Detalhe da mesorregião e suas microrregiões |
+| `/microrregioes/:id` | Detalhe da microrregião e seus municípios |
 | `/municipios/:id` | Detalhe do município |
 
 ## Exemplos de API (curl)
@@ -112,6 +116,12 @@ Nas telas do app, **Ver na API** / **Copiar URL da API** montam a mesma URL via 
 | Lista de estados | `/estados?orderBy=nome` |
 | Detalhe de estado | `/estados/{id}` |
 | Municípios da UF | `/estados/{id}/municipios?orderBy=nome` |
+| Mesorregiões da UF | `/estados/{id}/mesorregioes?orderBy=nome` |
+| Detalhe de mesorregião | `/mesorregioes/{id}` |
+| Microrregiões da UF | `/estados/{id}/microrregioes?orderBy=nome` |
+| Microrregiões da meso | `/mesorregioes/{id}/microrregioes?orderBy=nome` |
+| Detalhe de microrregião | `/microrregioes/{id}` |
+| Municípios da micro | `/microrregioes/{id}/municipios?orderBy=nome` |
 | Detalhe de município | `/municipios/{id}` |
 | Todos os municípios (busca) | `/municipios?orderBy=nome` |
 
@@ -123,9 +133,12 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes?orderBy=nom
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes/3"
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes/3/estados?orderBy=nome"
 
-# Estado São Paulo e municípios
+# Estado São Paulo, municípios, mesorregiões e microrregiões
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35"
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/municipios?orderBy=nome"
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/mesorregioes?orderBy=nome"
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes/3515/microrregioes?orderBy=nome"
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes/35061/municipios?orderBy=nome"
 
 # Município São Paulo (capital)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
@@ -178,3 +191,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 11. `feat: filtro local e contagem nas listagens`
 12. `feat: copiar e exportar CSV/JSON das consultas`
 13. `feat: link e URL oficial da API IBGE nas telas`
+14. `feat: mesorregiões e microrregiões com navegação cruzada`

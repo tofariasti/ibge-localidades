@@ -14,14 +14,6 @@ _(nenhuma)_
 
 ### Fase 2 — Hierarquia territorial completa
 
-#### US-14 — Mesorregiões e microrregiões
-
-- [ ] T14.1 Tipos e service (`mesorregioes`, `microrregioes`)
-- [ ] T14.2 Listagem e detalhe de mesorregião
-- [ ] T14.3 Listagem e detalhe de microrregião
-- [ ] T14.4 Links cruzados: UF ↔ meso ↔ micro ↔ município
-- [ ] T14.5 Breadcrumb atualizado
-
 #### US-15 — Regiões intermediárias e imediatas
 
 - [ ] T15.1 Tipos e service (intermediárias / imediatas)
@@ -210,3 +202,11 @@ _(nenhuma)_
 - [x] T13.1 Helper que monta a URL `servicodados.ibge.gov.br` da tela atual
 - [x] T13.2 Botão “Ver na API” / “Copiar URL da API”
 - [x] T13.3 Documentar no README o padrão de URLs
+
+### US-14 — Mesorregiões e microrregiões
+
+- [x] T14.1 Tipos e service (`mesorregioes`, `microrregioes`)
+- [x] T14.2 Listagem e detalhe de mesorregião
+- [x] T14.3 Listagem e detalhe de microrregião
+- [x] T14.4 Links cruzados: UF ↔ meso ↔ micro ↔ município
+- [x] T14.5 Breadcrumb atualizado

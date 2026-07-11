@@ -37,6 +37,7 @@ export function MunicipioDetail() {
 
   const uf = getUfFromMunicipio(data)
   const microrregiao = data.microrregiao
+  const mesorregiao = microrregiao?.mesorregiao
 
   return (
     <section className="page">
@@ -47,7 +48,33 @@ export function MunicipioDetail() {
           ...(uf
             ? [
                 { label: uf.nome, to: `/estados/${uf.id}` },
-                { label: 'Municípios', to: `/estados/${uf.id}/municipios` },
+                ...(mesorregiao
+                  ? [
+                      {
+                        label: 'Mesorregiões',
+                        to: `/estados/${uf.id}/mesorregioes`,
+                      },
+                      {
+                        label: mesorregiao.nome,
+                        to: `/mesorregioes/${mesorregiao.id}`,
+                      },
+                    ]
+                  : []),
+                ...(microrregiao
+                  ? [
+                      {
+                        label: microrregiao.nome,
+                        to: `/microrregioes/${microrregiao.id}`,
+                      },
+                    ]
+                  : mesorregiao
+                    ? []
+                    : [
+                        {
+                          label: 'Municípios',
+                          to: `/estados/${uf.id}/municipios`,
+                        },
+                      ]),
               ]
             : []),
           { label: data.nome },
@@ -76,9 +103,17 @@ export function MunicipioDetail() {
         {microrregiao && (
           <>
             <dt>Microrregião</dt>
-            <dd>{microrregiao.nome}</dd>
+            <dd>
+              <Link to={`/microrregioes/${microrregiao.id}`}>
+                {microrregiao.nome}
+              </Link>
+            </dd>
             <dt>Mesorregião</dt>
-            <dd>{microrregiao.mesorregiao.nome}</dd>
+            <dd>
+              <Link to={`/mesorregioes/${microrregiao.mesorregiao.id}`}>
+                {microrregiao.mesorregiao.nome}
+              </Link>
+            </dd>
           </>
         )}
         {data['regiao-imediata'] && (

@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-Quando for codar, seguir a Fase 1 do [KANBAN](./KANBAN.md) (**US-10 → US-13**), depois hierarquia (**US-14 → US-15**). Pedido típico:
+Seguir a Fase 2 do [KANBAN](./KANBAN.md): **US-15** (regiões intermediárias e imediatas). Pedido típico:
 
-> Implemente as features do grupo A: busca global, filtros, copiar/export e link da API oficial (US-10 a US-13).
+> Implemente a US-15 — regiões intermediárias e imediatas.

@@ -11,7 +11,7 @@ export interface UF {
   regiao: Regiao
 }
 
-export interface MesorregiaoRef {
+export interface Mesorregiao {
   id: number
   nome: string
   UF: UF
@@ -20,7 +20,7 @@ export interface MesorregiaoRef {
 export interface Microrregiao {
   id: number
   nome: string
-  mesorregiao: MesorregiaoRef
+  mesorregiao: Mesorregiao
 }
 
 export interface RegiaoIntermediariaRef {
