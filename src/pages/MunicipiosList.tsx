@@ -1,10 +1,15 @@
+import { useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { buildIbgeApiUrl } from '../api/ibgeClient'
 import { getEstado, getMunicipiosPorUF } from '../api/localidadesService'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { DataList } from '../components/DataList'
 import { ErrorMessage } from '../components/ErrorMessage'
+import { ListExportActions } from '../components/ListExportActions'
+import { ListFilter } from '../components/ListFilter'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
+import { useLocalFilter } from '../hooks/useLocalFilter'
 import type { Municipio } from '../types/localidades'
 
 export function MunicipiosList() {
@@ -12,6 +17,12 @@ export function MunicipiosList() {
 
   const estadoQuery = useIbgeQuery(() => getEstado(id!), [id])
   const municipiosQuery = useIbgeQuery(() => getMunicipiosPorUF(id!), [id])
+  const items = municipiosQuery.data ?? []
+  const getSearchText = useCallback(
+    (m: Municipio) => `${m.id} ${m.nome}`,
+    [],
+  )
+  const filter = useLocalFilter(items, getSearchText)
 
   if (!id) return <ErrorMessage message="Estado não informado." />
 
@@ -28,6 +39,9 @@ export function MunicipiosList() {
   }
 
   const estado = estadoQuery.data!
+  const apiUrl = buildIbgeApiUrl(`/estados/${estado.id}/municipios`, {
+    orderBy: 'nome',
+  })
 
   return (
     <section className="page">
@@ -51,16 +65,36 @@ export function MunicipiosList() {
         />
       )}
       {!municipiosQuery.error || municipiosQuery.data ? (
-        <DataList<Municipio>
-          items={municipiosQuery.data ?? []}
-          getRowKey={(m) => m.id}
-          getRowLink={(m) => `/municipios/${m.id}`}
-          emptyMessage="Nenhum município encontrado."
-          columns={[
-            { header: 'ID', render: (m) => m.id },
-            { header: 'Nome', render: (m) => m.nome },
-          ]}
-        />
+        <>
+          <ListFilter
+            id="filtro-municipios"
+            value={filter.query}
+            onChange={filter.setQuery}
+            shown={filter.shown}
+            total={filter.total}
+          />
+          <ListExportActions<Municipio>
+            items={filter.filtered}
+            filenameBase={`municipios-${estado.sigla.toLowerCase()}-ibge`}
+            apiUrl={apiUrl}
+            csvColumns={[
+              { header: 'id', value: (m) => m.id },
+              { header: 'nome', value: (m) => m.nome },
+              { header: 'uf_id', value: () => estado.id },
+              { header: 'uf', value: () => estado.sigla },
+            ]}
+          />
+          <DataList<Municipio>
+            items={filter.filtered}
+            getRowKey={(m) => m.id}
+            getRowLink={(m) => `/municipios/${m.id}`}
+            emptyMessage="Nenhum município encontrado."
+            columns={[
+              { header: 'ID', render: (m) => m.id },
+              { header: 'Nome', render: (m) => m.nome },
+            ]}
+          />
+        </>
       ) : null}
 
       <p>

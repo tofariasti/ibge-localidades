@@ -1,8 +1,10 @@
 import { Link, useParams } from 'react-router-dom'
+import { buildIbgeApiUrl } from '../api/ibgeClient'
 import { getEstadosPorRegiao, getRegiao } from '../api/localidadesService'
 import { BrazilMap } from '../components/BrazilMap'
 import { Breadcrumb } from '../components/Breadcrumb'
 import { DataList } from '../components/DataList'
+import { DetailActions } from '../components/DetailActions'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
@@ -49,6 +51,12 @@ export function RegiaoDetail() {
         <dt>Sigla</dt>
         <dd>{regiao.sigla}</dd>
       </dl>
+
+      <DetailActions
+        code={regiao.id}
+        resource={regiao}
+        apiUrl={buildIbgeApiUrl(`/regioes/${regiao.id}`)}
+      />
 
       <h2>Unidades Federativas</h2>
       {estadosQuery.error && (

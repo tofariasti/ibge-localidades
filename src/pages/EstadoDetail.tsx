@@ -1,7 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
+import { buildIbgeApiUrl } from '../api/ibgeClient'
 import { getEstado } from '../api/localidadesService'
 import { BrazilMap } from '../components/BrazilMap'
 import { Breadcrumb } from '../components/Breadcrumb'
+import { DetailActions } from '../components/DetailActions'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { Loading } from '../components/Loading'
@@ -51,6 +53,12 @@ export function EstadoDetail() {
           </Link>
         </dd>
       </dl>
+
+      <DetailActions
+        code={data.id}
+        resource={data}
+        apiUrl={buildIbgeApiUrl(`/estados/${data.id}`)}
+      />
 
       <p>
         <Link to={`/estados/${data.id}/municipios`} className="button">
