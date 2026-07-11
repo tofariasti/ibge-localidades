@@ -1,9 +1,15 @@
 import { buildCacheKey, cachedFetch } from './cache'
 import { agregadosFetch, buildAgregadosUrl } from './agregadosClient'
 import { IbgeApiError } from './ibgeClient'
+import {
+  getRankingIndicator,
+  type RankingIndicatorKey,
+} from '../lib/rankingIndicators'
 import type {
+  IndicatorRanking,
   IndicatorValue,
   LocalidadeIndicators,
+  RankingEntry,
   UfIndicatorSeries,
 } from '../types/indicadores'
 
@@ -15,9 +21,9 @@ import type {
 export const CENSO_2022_AGREGADO = '4714'
 export const CENSO_2022_PERIODO = '2022'
 
-const VAR_POPULACAO = '93'
-const VAR_AREA = '6318'
-const VAR_DENSIDADE = '614'
+export const VAR_POPULACAO = '93'
+export const VAR_AREA = '6318'
+export const VAR_DENSIDADE = '614'
 
 const DETAIL_VARS = `${VAR_POPULACAO}|${VAR_AREA}|${VAR_DENSIDADE}`
 
@@ -114,10 +120,18 @@ export function getIndicadoresMunicipio(
   return fetchLocalidadeIndicators('N6', municipioId)
 }
 
-/** População residente (Censo 2022) por UF — camada do mapa coroplético. */
-export function getPopulacaoPorUf(): Promise<UfIndicatorSeries> {
-  const localidades = 'N3[all]'
-  const path = `/${CENSO_2022_AGREGADO}/periodos/${CENSO_2022_PERIODO}/variaveis/${VAR_POPULACAO}`
+interface SeriesPayload {
+  variableId: string
+  variableLabel: string
+  unit: string
+  rows: Array<{ id: number; name: string; value: number }>
+}
+
+async function fetchIndicatorSeries(
+  localidades: string,
+  variableId: string,
+): Promise<SeriesPayload> {
+  const path = `/${CENSO_2022_AGREGADO}/periodos/${CENSO_2022_PERIODO}/variaveis/${variableId}`
   const key = buildCacheKey(`agregados${path}`, { localidades })
 
   return cachedFetch(key, async () => {
@@ -127,28 +141,116 @@ export function getPopulacaoPorUf(): Promise<UfIndicatorSeries> {
     const item = payload[0]
     const series = item?.resultados[0]?.series ?? []
     if (!item || series.length === 0) {
-      throw new IbgeApiError('Sem dados de população por UF.', 404)
+      throw new IbgeApiError('Sem dados do indicador para estas localidades.', 404)
     }
 
-    const valuesByUfId: Record<number, number> = {}
+    const rows: SeriesPayload['rows'] = []
     for (const row of series) {
       const value = parseNumber(row.serie[CENSO_2022_PERIODO])
-      const ufId = Number(row.localidade.id)
-      if (value != null && Number.isFinite(ufId)) {
-        valuesByUfId[ufId] = value
-      }
+      const id = Number(row.localidade.id)
+      if (value == null || !Number.isFinite(id)) continue
+      rows.push({
+        id,
+        name: cleanLocalidadeName(row.localidade.nome),
+        value,
+      })
+    }
+
+    if (rows.length === 0) {
+      throw new IbgeApiError('Indicador sem valores numéricos.', 404)
     }
 
     return {
-      period: CENSO_2022_PERIODO,
       variableId: item.id,
       variableLabel: item.variavel,
       unit: item.unidade,
-      queriedAt: formatQueriedAt(),
-      valuesByUfId,
-      ...sourceMeta(),
+      rows,
     }
   })
+}
+
+/** Remove sufixo " - SP" dos nomes de município vindos do Agregados. */
+function cleanLocalidadeName(name: string): string {
+  return name.replace(/\s+-\s+[A-Z]{2}$/, '')
+}
+
+function toRankingEntries(
+  rows: SeriesPayload['rows'],
+  detailPath: (id: number) => string,
+): RankingEntry[] {
+  const sorted = [...rows].sort((a, b) => b.value - a.value)
+  return sorted.map((row, index) => ({
+    rank: index + 1,
+    id: row.id,
+    name: row.name,
+    value: row.value,
+    detailPath: detailPath(row.id),
+  }))
+}
+
+/** População residente (Censo 2022) por UF — camada do mapa coroplético. */
+export async function getPopulacaoPorUf(): Promise<UfIndicatorSeries> {
+  const series = await fetchIndicatorSeries('N3[all]', VAR_POPULACAO)
+  const valuesByUfId: Record<number, number> = {}
+  for (const row of series.rows) {
+    valuesByUfId[row.id] = row.value
+  }
+
+  return {
+    period: CENSO_2022_PERIODO,
+    variableId: series.variableId,
+    variableLabel: series.variableLabel,
+    unit: series.unit,
+    queriedAt: formatQueriedAt(),
+    valuesByUfId,
+    ...sourceMeta(),
+  }
+}
+
+/** Ranking de UFs por indicador (Censo 2022). */
+export async function getRankingUfs(
+  indicator: RankingIndicatorKey = 'populacao',
+): Promise<IndicatorRanking> {
+  const { variableId } = getRankingIndicator(indicator)
+  const series = await fetchIndicatorSeries('N3[all]', variableId)
+
+  return {
+    scope: 'uf',
+    period: CENSO_2022_PERIODO,
+    variableId: series.variableId,
+    variableLabel: series.variableLabel,
+    unit: series.unit,
+    queriedAt: formatQueriedAt(),
+    entries: toRankingEntries(series.rows, (id) => `/estados/${id}`),
+    ...sourceMeta(),
+  }
+}
+
+/**
+ * Ranking de municípios de uma UF por indicador (Censo 2022).
+ * Usa `localidades=N6[N3[{ufId}]]` na API de Agregados.
+ */
+export async function getRankingMunicipiosPorUf(
+  ufId: number | string,
+  indicator: RankingIndicatorKey = 'populacao',
+  ufName?: string,
+): Promise<IndicatorRanking> {
+  const { variableId } = getRankingIndicator(indicator)
+  const localidades = `N6[N3[${ufId}]]`
+  const series = await fetchIndicatorSeries(localidades, variableId)
+
+  return {
+    scope: 'municipio',
+    ufId: Number(ufId),
+    ufName,
+    period: CENSO_2022_PERIODO,
+    variableId: series.variableId,
+    variableLabel: series.variableLabel,
+    unit: series.unit,
+    queriedAt: formatQueriedAt(),
+    entries: toRankingEntries(series.rows, (id) => `/municipios/${id}`),
+    ...sourceMeta(),
+  }
 }
 
 export function formatIndicatorValue(

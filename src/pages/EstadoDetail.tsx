@@ -74,6 +74,12 @@ export function EstadoDetail() {
           Ver municípios
         </Link>
         <Link
+          to={`/rankings/municipios/${data.id}`}
+          className="button button--secondary"
+        >
+          Ranking municípios
+        </Link>
+        <Link
           to={`/estados/${data.id}/mesorregioes`}
           className="button button--secondary"
         >

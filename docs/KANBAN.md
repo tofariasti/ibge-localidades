@@ -12,14 +12,6 @@ _(nenhuma)_
 
 ## Backlog
 
-### Fase 3 — Contexto analítico
-
-#### US-20 — Rankings simples
-
-- [ ] T20.1 Ranking de municípios da UF por indicador (quando houver dado)
-- [ ] T20.2 Ranking de UFs por indicador
-- [ ] T20.3 Links do ranking para o detalhe
-
 ### Fase 4 — Retenção e polimento
 
 #### US-21 — Favoritos e histórico
@@ -208,3 +200,9 @@ _(nenhuma)_
 - [x] T19.2 Tela `/comparar` lado a lado
 - [x] T19.3 Campos: códigos, hierarquia e indicadores disponíveis
 - [x] T19.4 Link compartilhável com IDs na query string
+
+### US-20 — Rankings simples
+
+- [x] T20.1 Ranking de municípios da UF por indicador (quando houver dado)
+- [x] T20.2 Ranking de UFs por indicador
+- [x] T20.3 Links do ranking para o detalhe

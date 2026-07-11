@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-19 concluída. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-20** (rankings simples). Pedido típico:
+US-20 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-21** (favoritos e histórico). Pedido típico:
 
-> Implemente a US-20 — rankings simples.
+> Implemente a US-21 — favoritos e histórico.

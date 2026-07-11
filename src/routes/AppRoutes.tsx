@@ -18,6 +18,10 @@ import { RegiaoImediataDetail } from '../pages/RegiaoImediataDetail'
 import { PaisesList } from '../pages/PaisesList'
 import { PaisDetail } from '../pages/PaisDetail'
 import { Comparar } from '../pages/Comparar'
+import { Rankings } from '../pages/Rankings'
+import { RankingUfs } from '../pages/RankingUfs'
+import { RankingMunicipios } from '../pages/RankingMunicipios'
+import { RankingMunicipiosUf } from '../pages/RankingMunicipiosUf'
 
 export function AppRoutes() {
   return (
@@ -56,6 +60,13 @@ export function AppRoutes() {
         <Route path="paises/:id" element={<PaisDetail />} />
         <Route path="municipios/:id" element={<MunicipioDetail />} />
         <Route path="comparar" element={<Comparar />} />
+        <Route path="rankings" element={<Rankings />} />
+        <Route path="rankings/ufs" element={<RankingUfs />} />
+        <Route path="rankings/municipios" element={<RankingMunicipios />} />
+        <Route
+          path="rankings/municipios/:ufId"
+          element={<RankingMunicipiosUf />}
+        />
       </Route>
     </Routes>
   )

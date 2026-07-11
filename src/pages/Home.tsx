@@ -68,6 +68,10 @@ export function Home() {
           <h2>Estados</h2>
           <p>Todas as unidades federativas</p>
         </Link>
+        <Link to="/rankings" className="card">
+          <h2>Rankings</h2>
+          <p>UFs e municípios por população, área ou densidade</p>
+        </Link>
         <Link to="/comparar" className="card">
           <h2>Comparar</h2>
           <p>Até 3 municípios ou UFs lado a lado</p>

@@ -109,8 +109,14 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/paises/:id` | Detalhe do país (código M49) |
 | `/municipios/:id` | Detalhe do município |
 | `/comparar` | Comparação lado a lado (query `ids`) |
+| `/rankings` | Hub de rankings (UFs e municípios) |
+| `/rankings/ufs` | Ranking de UFs por indicador (query `indicador`) |
+| `/rankings/municipios` | Escolha de UF para ranking municipal |
+| `/rankings/municipios/:ufId` | Ranking de municípios da UF (query `indicador`) |
 
 Na comparação, use `?ids=` com até 3 tokens separados por vírgula: `uf:35` (estado) ou `mun:3550308` (município). Ex.: `/comparar?ids=uf:35,mun:3304557`.
+
+Nos rankings, use `?indicador=` com `populacao` (padrão), `area` ou `densidade` (Censo 2022).
 
 ## Exemplos de API (curl)
 
@@ -149,6 +155,8 @@ Indicadores demográficos (Censo 2022) usam a [API de Agregados v3](https://serv
 | Indicadores da UF | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N3[{id}]` |
 | Indicadores do município | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N6[{id}]` |
 | População por UF (mapa) | `/4714/periodos/2022/variaveis/93?localidades=N3[all]` |
+| Ranking UFs | `/4714/periodos/2022/variaveis/{93\|6318\|614}?localidades=N3[all]` |
+| Ranking municípios da UF | `/4714/periodos/2022/variaveis/{93\|6318\|614}?localidades=N6[N3[{ufId}]]` |
 
 ```bash
 # Regiões
@@ -179,6 +187,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N3%5B35%5D"
 curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N6%5B3550308%5D"
 curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N3%5Ball%5D"
+curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6%5BN3%5B35%5D%5D" | head -c 400
 
 # Todos os municípios (índice da busca global)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome" | head -c 200
@@ -193,6 +202,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Indicadores** (população, área, densidade) no detalhe de UF e município — Censo 2022 via Agregados
 - **Mapa coroplético** na Home (toggle navegação / indicador) com população por UF
 - **Comparar** até 3 municípios ou UFs em `/comparar` (códigos, hierarquia, indicadores; link compartilhável via `?ids=`)
+- **Rankings** de UFs e de municípios por UF (população, área ou densidade — Censo 2022), com link para o detalhe
 ## Scripts
 
 | Comando | Descrição |
@@ -237,3 +247,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 17. `feat: indicadores demográficos no detalhe de UF e município`
 18. `feat: mapa coroplético de população por UF na Home`
 19. `feat: comparação lado a lado de municípios e UFs`
+20. `feat: rankings de UFs e municípios por indicador do Censo 2022`

@@ -31,3 +31,31 @@ export interface UfIndicatorSeries {
   /** Chave = id IBGE da UF. */
   valuesByUfId: Record<number, number>
 }
+
+/** Chaves de indicador disponíveis nos rankings (Censo 2022). */
+export type RankingIndicatorKey = 'populacao' | 'area' | 'densidade'
+
+export interface RankingEntry {
+  rank: number
+  id: number
+  name: string
+  value: number
+  /** Rota de detalhe no app (`/estados/:id` ou `/municipios/:id`). */
+  detailPath: string
+}
+
+/** Ranking ordenado (maior → menor) de um indicador. */
+export interface IndicatorRanking {
+  scope: 'uf' | 'municipio'
+  /** Preenchido quando `scope === 'municipio'`. */
+  ufId?: number
+  ufName?: string
+  period: string
+  variableId: string
+  variableLabel: string
+  unit: string
+  queriedAt: string
+  sourceLabel: string
+  sourceUrl: string
+  entries: RankingEntry[]
+}
