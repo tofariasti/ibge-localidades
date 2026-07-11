@@ -1,8 +1,17 @@
+import { buildCacheKey, cachedFetch } from './cache'
 import { ibgeFetch } from './ibgeClient'
 import type { Municipio, Regiao, UF } from '../types/localidades'
 
+function listFetch<T>(
+  path: string,
+  params?: Record<string, string>,
+): Promise<T> {
+  const key = buildCacheKey(path, params)
+  return cachedFetch(key, () => ibgeFetch<T>(path, params))
+}
+
 export function getRegioes(): Promise<Regiao[]> {
-  return ibgeFetch<Regiao[]>('/regioes', { orderBy: 'nome' })
+  return listFetch<Regiao[]>('/regioes', { orderBy: 'nome' })
 }
 
 export function getRegiao(id: number | string): Promise<Regiao> {
@@ -10,7 +19,7 @@ export function getRegiao(id: number | string): Promise<Regiao> {
 }
 
 export function getEstados(): Promise<UF[]> {
-  return ibgeFetch<UF[]>('/estados', { orderBy: 'nome' })
+  return listFetch<UF[]>('/estados', { orderBy: 'nome' })
 }
 
 export function getEstado(id: number | string): Promise<UF> {
@@ -18,11 +27,13 @@ export function getEstado(id: number | string): Promise<UF> {
 }
 
 export function getEstadosPorRegiao(regiaoId: number | string): Promise<UF[]> {
-  return ibgeFetch<UF[]>(`/regioes/${regiaoId}/estados`, { orderBy: 'nome' })
+  return listFetch<UF[]>(`/regioes/${regiaoId}/estados`, { orderBy: 'nome' })
 }
 
 export function getMunicipiosPorUF(ufId: number | string): Promise<Municipio[]> {
-  return ibgeFetch<Municipio[]>(`/estados/${ufId}/municipios`, { orderBy: 'nome' })
+  return listFetch<Municipio[]>(`/estados/${ufId}/municipios`, {
+    orderBy: 'nome',
+  })
 }
 
 export function getMunicipio(id: number | string): Promise<Municipio> {
