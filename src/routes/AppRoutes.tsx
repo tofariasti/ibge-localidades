@@ -17,6 +17,7 @@ import { RegioesImediatasList } from '../pages/RegioesImediatasList'
 import { RegiaoImediataDetail } from '../pages/RegiaoImediataDetail'
 import { PaisesList } from '../pages/PaisesList'
 import { PaisDetail } from '../pages/PaisDetail'
+import { Comparar } from '../pages/Comparar'
 
 export function AppRoutes() {
   return (
@@ -54,6 +55,7 @@ export function AppRoutes() {
         <Route path="paises" element={<PaisesList />} />
         <Route path="paises/:id" element={<PaisDetail />} />
         <Route path="municipios/:id" element={<MunicipioDetail />} />
+        <Route path="comparar" element={<Comparar />} />
       </Route>
     </Routes>
   )

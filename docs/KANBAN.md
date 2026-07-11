@@ -14,13 +14,6 @@ _(nenhuma)_
 
 ### Fase 3 — Contexto analítico
 
-#### US-19 — Comparação de localidades
-
-- [ ] T19.1 Selecionar 2 (até 3) municípios ou UFs
-- [ ] T19.2 Tela `/comparar` lado a lado
-- [ ] T19.3 Campos: códigos, hierarquia e indicadores disponíveis
-- [ ] T19.4 Link compartilhável com IDs na query string
-
 #### US-20 — Rankings simples
 
 - [ ] T20.1 Ranking de municípios da UF por indicador (quando houver dado)
@@ -208,3 +201,10 @@ _(nenhuma)_
 - [x] T18.2 Escala de cores + legenda no `BrazilMap`
 - [x] T18.3 Toggle “navegação” vs “indicador” na Home
 - [x] T18.4 Tooltip com valor no hover
+
+### US-19 — Comparação de localidades
+
+- [x] T19.1 Selecionar 2 (até 3) municípios ou UFs
+- [x] T19.2 Tela `/comparar` lado a lado
+- [x] T19.3 Campos: códigos, hierarquia e indicadores disponíveis
+- [x] T19.4 Link compartilhável com IDs na query string

@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-17 e US-18 concluídas. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-19** (comparação de localidades). Pedido típico:
+US-19 concluída. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-20** (rankings simples). Pedido típico:
 
-> Implemente a US-19 — comparação de localidades.
+> Implemente a US-20 — rankings simples.

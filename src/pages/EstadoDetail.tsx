@@ -64,6 +64,12 @@ export function EstadoDetail() {
       />
 
       <p className="action-bar__buttons">
+        <Link
+          to={`/comparar?ids=${encodeURIComponent(`uf:${data.id}`)}`}
+          className="button button--secondary"
+        >
+          Comparar
+        </Link>
         <Link to={`/estados/${data.id}/municipios`} className="button">
           Ver municípios
         </Link>

@@ -163,6 +163,15 @@ export function MunicipioDetail() {
         apiUrl={buildIbgeApiUrl(`/municipios/${data.id}`)}
       />
 
+      <p className="action-bar__buttons">
+        <Link
+          to={`/comparar?ids=${encodeURIComponent(`mun:${data.id}`)}`}
+          className="button button--secondary"
+        >
+          Comparar
+        </Link>
+      </p>
+
       {uf && (
         <p>
           <Link to={`/estados/${uf.id}/municipios`}>

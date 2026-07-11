@@ -108,6 +108,9 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/paises` | Lista de países e áreas |
 | `/paises/:id` | Detalhe do país (código M49) |
 | `/municipios/:id` | Detalhe do município |
+| `/comparar` | Comparação lado a lado (query `ids`) |
+
+Na comparação, use `?ids=` com até 3 tokens separados por vírgula: `uf:35` (estado) ou `mun:3550308` (município). Ex.: `/comparar?ids=uf:35,mun:3304557`.
 
 ## Exemplos de API (curl)
 
@@ -189,6 +192,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Ver / copiar URL** da API oficial correspondente à tela
 - **Indicadores** (população, área, densidade) no detalhe de UF e município — Censo 2022 via Agregados
 - **Mapa coroplético** na Home (toggle navegação / indicador) com população por UF
+- **Comparar** até 3 municípios ou UFs em `/comparar` (códigos, hierarquia, indicadores; link compartilhável via `?ids=`)
 ## Scripts
 
 | Comando | Descrição |
@@ -232,3 +236,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 16. `feat: países com códigos M49/ISO e entrada na Home`
 17. `feat: indicadores demográficos no detalhe de UF e município`
 18. `feat: mapa coroplético de população por UF na Home`
+19. `feat: comparação lado a lado de municípios e UFs`
