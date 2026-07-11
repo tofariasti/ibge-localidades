@@ -57,6 +57,22 @@ npm run dev
 
 Acesse http://localhost:5173
 
+## Qualidade (lint, build, E2E)
+
+```bash
+npm run lint
+npm run build
+npm run test:e2e
+```
+
+Os testes E2E usam [Playwright](https://playwright.dev) (Chromium), sobem o `preview` após o build e consultam a API pública do IBGE (rede necessária). No CI, o workflow [`.github/workflows/ci.yml`](.github/workflows/ci.yml) roda lint, build com `VITE_DISABLE_SW=true` (sem service worker) e os E2E.
+
+Na primeira execução local, instale o browser:
+
+```bash
+npx playwright install chromium
+```
+
 ## Docker
 
 ### Desenvolvimento (hot reload)

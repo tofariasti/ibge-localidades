@@ -14,7 +14,9 @@ applyTheme(resolveTheme(readStoredTheme()))
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
 
-registerSW({ immediate: true })
+if (!import.meta.env.VITE_DISABLE_SW) {
+  registerSW({ immediate: true })
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

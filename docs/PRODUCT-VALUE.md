@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-24 concluída. Seguir a Fase 4 do [KANBAN](./KANBAN.md): **US-25** (testes E2E e CI). Pedido típico:
+US-25 concluída. Seguir a Fase 5 do [KANBAN](./KANBAN.md): **US-26** (conta e sync) quando houver tração. Pedido típico:
 
-> Implemente a US-25 — testes E2E e CI.
+> Implemente a US-26 — conta e sync.

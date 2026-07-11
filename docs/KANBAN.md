@@ -12,14 +12,6 @@ _(nenhuma)_
 
 ## Backlog
 
-### Fase 4 — Retenção e polimento
-
-#### US-25 — Testes E2E e CI
-
-- [ ] T25.1 Playwright: fluxo Home → UF → município
-- [ ] T25.2 Playwright: busca por código e export
-- [ ] T25.3 Workflow CI (lint + build + e2e) no GitHub Actions
-
 ### Fase 5 — Monetização B2B (após tração)
 
 #### US-26 — Conta e sync
@@ -206,3 +198,9 @@ _(nenhuma)_
 - [x] T24.1 Página/glossário: código IBGE, meso/micro, imediata/intermediária
 - [x] T24.2 Revisar contraste, foco e `aria` na busca e no mapa
 - [x] T24.3 Preferência de tema (claro/escuro) se couber no design atual
+
+### US-25 — Testes E2E e CI
+
+- [x] T25.1 Playwright: fluxo Home → UF → município
+- [x] T25.2 Playwright: busca por código e export
+- [x] T25.3 Workflow CI (lint + build + e2e) no GitHub Actions
