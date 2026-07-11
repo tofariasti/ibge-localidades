@@ -36,6 +36,11 @@ export function getMunicipiosPorUF(ufId: number | string): Promise<Municipio[]> 
   })
 }
 
+/** Todos os municípios (usado pela busca global; cacheado). */
+export function getMunicipios(): Promise<Municipio[]> {
+  return listFetch<Municipio[]>('/municipios', { orderBy: 'nome' })
+}
+
 export function getMunicipio(id: number | string): Promise<Municipio> {
   return ibgeFetch<Municipio>(`/municipios/${id}`)
 }

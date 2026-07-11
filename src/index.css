@@ -38,6 +38,7 @@ a:hover {
   padding: 1rem 1.5rem;
   background: #1a237e;
   color: #fff;
+  flex-wrap: wrap;
 }
 
 .header a {
@@ -52,6 +53,199 @@ a:hover {
 .logo {
   font-weight: 700;
   font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.global-search {
+  position: relative;
+  flex: 1 1 220px;
+  max-width: 360px;
+  min-width: 180px;
+}
+
+.global-search__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.global-search__input {
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: inherit;
+}
+
+.global-search__input::placeholder {
+  color: rgba(227, 242, 253, 0.7);
+}
+
+.global-search__input:focus {
+  outline: 2px solid #90caf9;
+  outline-offset: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.global-search__panel {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  max-height: 320px;
+  overflow: auto;
+  background: #fff;
+  color: #1a1a2e;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border: 1px solid #dde1e6;
+}
+
+.global-search__status {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.global-search__status--error {
+  color: #b71c1c;
+}
+
+.global-search__option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'kind label'
+    'kind hierarchy';
+  gap: 0.1rem 0.65rem;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+.global-search__option:hover,
+.global-search__option.is-active {
+  background: #e8eaf6;
+}
+
+.global-search__option-kind {
+  grid-area: kind;
+  align-self: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #3949ab;
+  background: #e8eaf6;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.global-search__option-label {
+  grid-area: label;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.global-search__option-hierarchy {
+  grid-area: hierarchy;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.list-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.list-filter__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.list-filter__input {
+  flex: 1 1 200px;
+  max-width: 320px;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #c5cdd6;
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+}
+
+.list-filter__input:focus {
+  outline: 2px solid #90caf9;
+  outline-offset: 1px;
+}
+
+.list-filter__count {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.action-bar {
+  margin: 0 0 1rem;
+}
+
+.action-bar__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.action-bar__feedback {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #1a237e;
+  color: #fff !important;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #283593;
+  text-decoration: none;
+}
+
+.button--secondary {
+  background: #fff;
+  color: #1a237e !important;
+  border: 1px solid #c5cdd6;
+}
+
+.button--secondary:hover {
+  background: #e8eaf6;
+  border-color: #9fa8da;
 }
 
 .main {
@@ -327,24 +521,15 @@ a:hover {
   opacity: 0.7;
 }
 
-.button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #1a237e;
-  color: #fff !important;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.button:hover {
-  background: #283593;
-  text-decoration: none;
-}
-
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .global-search {
+    max-width: none;
+    width: 100%;
   }
 
   .data-list {

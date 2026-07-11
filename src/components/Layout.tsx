@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
+import { GlobalSearch } from './GlobalSearch'
 
 export function Layout() {
   return (
@@ -7,6 +8,7 @@ export function Layout() {
         <Link to="/" className="logo">
           IBGE Localidades
         </Link>
+        <GlobalSearch />
         <nav>
           <Link to="/regioes">Regiões</Link>
           <Link to="/estados">Estados</Link>
