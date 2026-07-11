@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-25 concluída. Seguir a Fase 5 do [KANBAN](./KANBAN.md): **US-26** (conta e sync) quando houver tração. Pedido típico:
+US-27 concluída. Próxima da Fase 5 no [KANBAN](./KANBAN.md): **US-28** (módulos IBGE adicionais), ou retomar **US-26** (conta/sync) se houver tração. Pedido típico:
 
-> Implemente a US-26 — conta e sync.
+> Implemente a US-28 — módulos IBGE adicionais.

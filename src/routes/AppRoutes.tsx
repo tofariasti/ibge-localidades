@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from '../components/Layout'
+import { EmbedLayout } from '../components/EmbedLayout'
 import { Home } from '../pages/Home'
 import { RegioesList } from '../pages/RegioesList'
 import { RegiaoDetail } from '../pages/RegiaoDetail'
@@ -25,10 +26,20 @@ import { RankingMunicipiosUf } from '../pages/RankingMunicipiosUf'
 import { Salvos } from '../pages/Salvos'
 import { Glossario } from '../pages/Glossario'
 import { Doar } from '../pages/Doar'
+import { EmbedMap } from '../pages/embed/EmbedMap'
+import { EmbedEstado } from '../pages/embed/EmbedEstado'
+import { EmbedMunicipio } from '../pages/embed/EmbedMunicipio'
+import { EmbedRegiao } from '../pages/embed/EmbedRegiao'
 
 export function AppRoutes() {
   return (
     <Routes>
+      <Route path="embed" element={<EmbedLayout />}>
+        <Route index element={<EmbedMap />} />
+        <Route path="estados/:id" element={<EmbedEstado />} />
+        <Route path="municipios/:id" element={<EmbedMunicipio />} />
+        <Route path="regioes/:id" element={<EmbedRegiao />} />
+      </Route>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="doar" element={<Doar />} />

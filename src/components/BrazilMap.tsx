@@ -23,6 +23,14 @@ import { Loading } from './Loading'
 
 export type BrazilMapMode = 'navigation' | 'indicator'
 
+function defaultStatePath(id: number): string {
+  return `/estados/${id}`
+}
+
+function defaultRegionPath(id: number): string {
+  return `/regioes/${id}`
+}
+
 interface BrazilMapProps {
   /** Destaca o estado selecionado (ex.: página de detalhe da UF). */
   activeStateId?: number
@@ -37,6 +45,10 @@ interface BrazilMapProps {
   indicatorError?: string | null
   onIndicatorRetry?: () => void
   indicatorRetrying?: boolean
+  /** Destino ao clicar numa UF (padrão: `/estados/:id`). */
+  getStatePath?: (id: number) => string
+  /** Destino da legenda de região (padrão: `/regioes/:id`). */
+  getRegionPath?: (id: number) => string
 }
 
 function stateClassName(
@@ -64,6 +76,8 @@ export function BrazilMap({
   indicatorError = null,
   onIndicatorRetry,
   indicatorRetrying = false,
+  getStatePath = defaultStatePath,
+  getRegionPath = defaultRegionPath,
 }: BrazilMapProps) {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [focusedId, setFocusedId] = useState<number | null>(null)
@@ -104,9 +118,9 @@ export function BrazilMap({
 
   const goToState = useCallback(
     (id: number) => {
-      navigate(`/estados/${id}`)
+      navigate(getStatePath(id))
     },
-    [navigate],
+    [navigate, getStatePath],
   )
 
   const indicatorValue =
@@ -265,7 +279,7 @@ export function BrazilMap({
             {BRAZIL_MAP_REGIONS.map((region) => (
               <li key={region.id}>
                 <Link
-                  to={`/regioes/${region.id}`}
+                  to={getRegionPath(region.id)}
                   className="brazil-map__legend-link"
                 >
                   <span

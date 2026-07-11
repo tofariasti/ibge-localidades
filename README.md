@@ -141,12 +141,18 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/rankings/ufs` | Ranking de UFs por indicador (query `indicador`) |
 | `/rankings/municipios` | Escolha de UF para ranking municipal |
 | `/rankings/municipios/:ufId` | Ranking de municípios da UF (query `indicador`) |
+| `/embed` | Widget embutível: mapa (chrome mínimo) |
+| `/embed/estados/:id` | Widget: detalhe compacto da UF |
+| `/embed/municipios/:id` | Widget: detalhe compacto do município |
+| `/embed/regioes/:id` | Widget: detalhe compacto da região |
 
 Na comparação, use `?ids=` com até 3 tokens separados por vírgula: `uf:35` (estado) ou `mun:3550308` (município). Ex.: `/comparar?ids=uf:35,mun:3304557`.
 
 Nos rankings, use `?indicador=` com `populacao` (padrão), `area` ou `densidade` (Censo 2022).
 
 Filtros de lista usam `?q=` (texto). Na Home, o mapa coroplético usa `?mapa=indicador`. Use **Copiar link desta view** para compartilhar a URL atual com esses parâmetros.
+
+**Embed / white-label:** veja [docs/EMBED.md](docs/EMBED.md) (`theme`, `accent`, `bg`, `text`, `brand`, `logo`).
 ## Exemplos de API (curl)
 
 Base: `https://servicodados.ibge.gov.br/api/v1/localidades`
@@ -266,6 +272,7 @@ Após `npm run build` / `npm run build:pages`, o app pode ser instalado no dispo
 
 - Tarefas e user stories: [docs/KANBAN.md](docs/KANBAN.md)
 - Prompt de discovery e priorização A/B/C: [docs/PRODUCT-VALUE.md](docs/PRODUCT-VALUE.md)
+- Embed iframe e parâmetros de marca: [docs/EMBED.md](docs/EMBED.md)
 
 ## Commits
 

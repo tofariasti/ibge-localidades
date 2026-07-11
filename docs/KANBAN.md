@@ -14,23 +14,19 @@ _(nenhuma)_
 
 ### Fase 5 — Monetização B2B (após tração)
 
-#### US-26 — Conta e sync
-
-- [ ] T26.1 Auth mínima (ou magic link)
-- [ ] T26.2 Sync de favoritos e comparações
-- [ ] T26.3 Relatórios salvos
-
-#### US-27 — Embed e white-label
-
-- [ ] T27.1 Widget embeddable (mapa ou detalhe)
-- [ ] T27.2 Parâmetros de marca (cores / logo)
-- [ ] T27.3 Documentação de integração
-
 #### US-28 — Módulos IBGE adicionais
 
 - [ ] T28.1 SIDRA avançado (séries temporais)
 - [ ] T28.2 API de Nomes (módulo opcional)
 - [ ] T28.3 Catálogo de módulos ativáveis por plano
+
+## Adiado
+
+### US-26 — Conta e sync _(pulada — sem tração / auth ainda não priorizada)_
+
+- [ ] T26.1 Auth mínima (ou magic link)
+- [ ] T26.2 Sync de favoritos e comparações
+- [ ] T26.3 Relatórios salvos
 
 ## Concluído
 
@@ -204,3 +200,9 @@ _(nenhuma)_
 - [x] T25.1 Playwright: fluxo Home → UF → município
 - [x] T25.2 Playwright: busca por código e export
 - [x] T25.3 Workflow CI (lint + build + e2e) no GitHub Actions
+
+### US-27 — Embed e white-label
+
+- [x] T27.1 Widget embeddable (mapa ou detalhe)
+- [x] T27.2 Parâmetros de marca (cores / logo)
+- [x] T27.3 Documentação de integração
