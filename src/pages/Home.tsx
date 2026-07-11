@@ -21,6 +21,10 @@ export function Home() {
           <h2>Estados</h2>
           <p>Todas as unidades federativas</p>
         </Link>
+        <Link to="/paises" className="card">
+          <h2>Países</h2>
+          <p>Países e áreas com códigos M49 e ISO</p>
+        </Link>
       </div>
     </section>
   )

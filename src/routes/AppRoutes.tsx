@@ -15,6 +15,8 @@ import { RegioesIntermediariasList } from '../pages/RegioesIntermediariasList'
 import { RegiaoIntermediariaDetail } from '../pages/RegiaoIntermediariaDetail'
 import { RegioesImediatasList } from '../pages/RegioesImediatasList'
 import { RegiaoImediataDetail } from '../pages/RegiaoImediataDetail'
+import { PaisesList } from '../pages/PaisesList'
+import { PaisDetail } from '../pages/PaisDetail'
 
 export function AppRoutes() {
   return (
@@ -49,6 +51,8 @@ export function AppRoutes() {
           element={<RegiaoIntermediariaDetail />}
         />
         <Route path="regioes-imediatas/:id" element={<RegiaoImediataDetail />} />
+        <Route path="paises" element={<PaisesList />} />
+        <Route path="paises/:id" element={<PaisDetail />} />
         <Route path="municipios/:id" element={<MunicipioDetail />} />
       </Route>
     </Routes>

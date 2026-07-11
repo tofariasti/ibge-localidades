@@ -269,6 +269,12 @@ a:hover {
   margin-top: 0;
 }
 
+.page__lead {
+  margin: 0 0 1rem;
+  color: #555;
+  max-width: 42rem;
+}
+
 .home__map {
   margin: 1.5rem 0;
 }

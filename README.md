@@ -105,6 +105,8 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/microrregioes/:id` | Detalhe da microrregião e seus municípios |
 | `/regioes-intermediarias/:id` | Detalhe da intermediária e suas imediatas |
 | `/regioes-imediatas/:id` | Detalhe da imediata e seus municípios |
+| `/paises` | Lista de países e áreas |
+| `/paises/:id` | Detalhe do país (código M49) |
 | `/municipios/:id` | Detalhe do município |
 
 ## Exemplos de API (curl)
@@ -132,6 +134,8 @@ Nas telas do app, **Ver na API** / **Copiar URL da API** montam a mesma URL via 
 | Imediatas da UF | `/estados/{id}/regioes-imediatas?orderBy=nome` |
 | Detalhe de imediata | `/regioes-imediatas/{id}` |
 | Municípios da imediata | `/regioes-imediatas/{id}/municipios?orderBy=nome` |
+| Lista de países | `/paises?orderBy=nome` |
+| Detalhe de país (M49) | `/paises/{m49}` |
 | Detalhe de município | `/municipios/{id}` |
 | Todos os municípios (busca) | `/municipios?orderBy=nome` |
 
@@ -152,6 +156,10 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes/35061
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/regioes-intermediarias?orderBy=nome"
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes-intermediarias/3501/regioes-imediatas?orderBy=nome"
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes-imediatas/350001/municipios?orderBy=nome"
+
+# Países (M49 do Brasil = 76)
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/paises?orderBy=nome" | head -c 200
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/paises/76"
 
 # Município São Paulo (capital)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
@@ -206,3 +214,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 13. `feat: link e URL oficial da API IBGE nas telas`
 14. `feat: mesorregiões e microrregiões com navegação cruzada`
 15. `feat: regiões intermediárias e imediatas com navegação cruzada`
+16. `feat: países com códigos M49/ISO e entrada na Home`

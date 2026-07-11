@@ -12,6 +12,7 @@ export function Layout() {
         <nav>
           <Link to="/regioes">Regiões</Link>
           <Link to="/estados">Estados</Link>
+          <Link to="/paises">Países</Link>
         </nav>
       </header>
       <main className="main">

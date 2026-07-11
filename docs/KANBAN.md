@@ -12,14 +12,6 @@ _(nenhuma)_
 
 ## Backlog
 
-### Fase 2 — Hierarquia territorial completa
-
-#### US-16 — Países
-
-- [ ] T16.1 Tipos e service `/paises`
-- [ ] T16.2 Lista e detalhe de país
-- [ ] T16.3 Entrada na Home / nav (secundária)
-
 ### Fase 3 — Contexto analítico
 
 #### US-17 — Indicadores no detalhe
@@ -210,3 +202,9 @@ _(nenhuma)_
 - [x] T15.2 Telas de listagem e detalhe
 - [x] T15.3 Integração na navegação do município e da UF
 - [x] T15.4 Breadcrumb atualizado
+
+### US-16 — Países
+
+- [x] T16.1 Tipos e service `/paises`
+- [x] T16.2 Lista e detalhe de país
+- [x] T16.3 Entrada na Home / nav (secundária)

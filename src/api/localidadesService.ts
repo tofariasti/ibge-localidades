@@ -1,9 +1,10 @@
 import { buildCacheKey, cachedFetch } from './cache'
-import { ibgeFetch } from './ibgeClient'
+import { IbgeApiError, ibgeFetch } from './ibgeClient'
 import type {
   Mesorregiao,
   Microrregiao,
   Municipio,
+  Pais,
   Regiao,
   RegiaoImediata,
   RegiaoIntermediaria,
@@ -137,4 +138,18 @@ export function getMunicipiosPorRegiaoImediata(
     `/regioes-imediatas/${imediataId}/municipios`,
     { orderBy: 'nome' },
   )
+}
+
+export function getPaises(): Promise<Pais[]> {
+  return listFetch<Pais[]>('/paises', { orderBy: 'nome' })
+}
+
+/** A API devolve um array mesmo para um código M49; normalizamos para um item. */
+export async function getPais(id: number | string): Promise<Pais> {
+  const result = await ibgeFetch<Pais[] | Pais>(`/paises/${id}`)
+  const pais = Array.isArray(result) ? result[0] : result
+  if (!pais) {
+    throw new IbgeApiError(`País não encontrado (${id}).`, 404)
+  }
+  return pais
 }
