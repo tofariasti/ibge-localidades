@@ -100,6 +100,8 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | Rota | Descrição |
 |------|-----------|
 | `/` | Página inicial com atalhos |
+| `/doar` | Doação via Pix (Nubank, QR e Copia e Cola) |
+| `/glossario` | Glossário de termos da hierarquia IBGE |
 | `/regioes` | Lista das 5 macrorregiões |
 | `/regioes/:id` | Detalhe da região e UFs associadas |
 | `/estados` | Lista de todas as UFs |
