@@ -1,7 +1,19 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BrazilMap } from '../components/BrazilMap'
+import { getPopulacaoPorUf } from '../api/indicadoresService'
+import { BrazilMap, type BrazilMapMode } from '../components/BrazilMap'
+import { useIbgeQuery } from '../hooks/useIbgeQuery'
 
 export function Home() {
+  const [mapMode, setMapMode] = useState<BrazilMapMode>('navigation')
+  const {
+    data: indicatorSeries,
+    loading: indicatorLoading,
+    error: indicatorError,
+    refetch: refetchIndicator,
+    refetching: indicatorRetrying,
+  } = useIbgeQuery(getPopulacaoPorUf)
+
   return (
     <section className="page home">
       <h1>Localidades do Brasil</h1>
@@ -10,7 +22,42 @@ export function Home() {
         federativas e municípios.
       </p>
 
-      <BrazilMap className="home__map" />
+      <div className="map-mode-toggle" role="group" aria-label="Modo do mapa">
+        <button
+          type="button"
+          className={
+            mapMode === 'navigation'
+              ? 'map-mode-toggle__btn is-active'
+              : 'map-mode-toggle__btn'
+          }
+          aria-pressed={mapMode === 'navigation'}
+          onClick={() => setMapMode('navigation')}
+        >
+          Navegação
+        </button>
+        <button
+          type="button"
+          className={
+            mapMode === 'indicator'
+              ? 'map-mode-toggle__btn is-active'
+              : 'map-mode-toggle__btn'
+          }
+          aria-pressed={mapMode === 'indicator'}
+          onClick={() => setMapMode('indicator')}
+        >
+          Indicador
+        </button>
+      </div>
+
+      <BrazilMap
+        className="home__map"
+        mode={mapMode}
+        indicatorSeries={indicatorSeries}
+        indicatorLoading={indicatorLoading}
+        indicatorError={indicatorError}
+        onIndicatorRetry={refetchIndicator}
+        indicatorRetrying={indicatorRetrying}
+      />
 
       <div className="home-cards">
         <Link to="/regioes" className="card">

@@ -140,6 +140,6 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-17 concluída. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-18** (mapa coroplético). Pedido típico:
+US-17 e US-18 concluídas. Seguir a Fase 3 do [KANBAN](./KANBAN.md): **US-19** (comparação de localidades). Pedido típico:
 
-> Implemente a US-18 — mapa coroplético.
+> Implemente a US-19 — comparação de localidades.

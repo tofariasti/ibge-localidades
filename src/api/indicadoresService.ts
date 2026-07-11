@@ -4,6 +4,7 @@ import { IbgeApiError } from './ibgeClient'
 import type {
   IndicatorValue,
   LocalidadeIndicators,
+  UfIndicatorSeries,
 } from '../types/indicadores'
 
 /**
@@ -111,6 +112,43 @@ export function getIndicadoresMunicipio(
   municipioId: number | string,
 ): Promise<LocalidadeIndicators> {
   return fetchLocalidadeIndicators('N6', municipioId)
+}
+
+/** População residente (Censo 2022) por UF — camada do mapa coroplético. */
+export function getPopulacaoPorUf(): Promise<UfIndicatorSeries> {
+  const localidades = 'N3[all]'
+  const path = `/${CENSO_2022_AGREGADO}/periodos/${CENSO_2022_PERIODO}/variaveis/${VAR_POPULACAO}`
+  const key = buildCacheKey(`agregados${path}`, { localidades })
+
+  return cachedFetch(key, async () => {
+    const payload = await agregadosFetch<AgregadoVariavel[]>(path, {
+      localidades,
+    })
+    const item = payload[0]
+    const series = item?.resultados[0]?.series ?? []
+    if (!item || series.length === 0) {
+      throw new IbgeApiError('Sem dados de população por UF.', 404)
+    }
+
+    const valuesByUfId: Record<number, number> = {}
+    for (const row of series) {
+      const value = parseNumber(row.serie[CENSO_2022_PERIODO])
+      const ufId = Number(row.localidade.id)
+      if (value != null && Number.isFinite(ufId)) {
+        valuesByUfId[ufId] = value
+      }
+    }
+
+    return {
+      period: CENSO_2022_PERIODO,
+      variableId: item.id,
+      variableLabel: item.variavel,
+      unit: item.unidade,
+      queriedAt: formatQueriedAt(),
+      valuesByUfId,
+      ...sourceMeta(),
+    }
+  })
 }
 
 export function formatIndicatorValue(

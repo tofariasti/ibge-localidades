@@ -14,13 +14,6 @@ _(nenhuma)_
 
 ### Fase 3 — Contexto analítico
 
-#### US-18 — Mapa coropleto
-
-- [ ] T18.1 Camada de dados por UF (um indicador)
-- [ ] T18.2 Escala de cores + legenda no `BrazilMap`
-- [ ] T18.3 Toggle “navegação” vs “indicador” na Home
-- [ ] T18.4 Tooltip com valor no hover
-
 #### US-19 — Comparação de localidades
 
 - [ ] T19.1 Selecionar 2 (até 3) municípios ou UFs
@@ -208,3 +201,10 @@ _(nenhuma)_
 - [x] T17.2 Painel de indicadores em `MunicipioDetail` e `EstadoDetail`
 - [x] T17.3 Loading/erro isolados do restante da página
 - [x] T17.4 Fonte e data da consulta visíveis (“dados IBGE”)
+
+### US-18 — Mapa coropleto
+
+- [x] T18.1 Camada de dados por UF (um indicador)
+- [x] T18.2 Escala de cores + legenda no `BrazilMap`
+- [x] T18.3 Toggle “navegação” vs “indicador” na Home
+- [x] T18.4 Tooltip com valor no hover

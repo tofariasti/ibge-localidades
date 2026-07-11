@@ -10,7 +10,7 @@ Hierarquia do MVP: **Regiões → UFs → Municípios**.
 
 ### Página inicial
 
-Mapa interativo em SVG (malha simplificada do IBGE): clique em qualquer UF para ir ao detalhe do estado; a legenda leva às macrorregiões.
+Mapa interativo em SVG (malha simplificada do IBGE): clique em qualquer UF para ir ao detalhe do estado; a legenda leva às macrorregiões. Na Home, alterne **Navegação** (cores por região) e **Indicador** (coroplético de população residente, Censo 2022).
 
 ![Mapa interativo do Brasil](docs/screenshots/mapa-brasil.png)
 
@@ -145,6 +145,7 @@ Indicadores demográficos (Censo 2022) usam a [API de Agregados v3](https://serv
 |------|----------|
 | Indicadores da UF | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N3[{id}]` |
 | Indicadores do município | `/4714/periodos/2022/variaveis/93\|6318\|614?localidades=N6[{id}]` |
+| População por UF (mapa) | `/4714/periodos/2022/variaveis/93?localidades=N3[all]` |
 
 ```bash
 # Regiões
@@ -174,6 +175,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 # Indicadores Censo 2022 (Agregados) — SP estado e capital
 curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N3%5B35%5D"
 curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93%7C6318%7C614?localidades=N6%5B3550308%5D"
+curl -s "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N3%5Ball%5D"
 
 # Todos os municípios (índice da busca global)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome" | head -c 200
@@ -186,6 +188,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Copiar** código IBGE / JSON nos detalhes; **exportar** CSV/JSON da lista filtrada
 - **Ver / copiar URL** da API oficial correspondente à tela
 - **Indicadores** (população, área, densidade) no detalhe de UF e município — Censo 2022 via Agregados
+- **Mapa coroplético** na Home (toggle navegação / indicador) com população por UF
 ## Scripts
 
 | Comando | Descrição |
@@ -228,3 +231,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 15. `feat: regiões intermediárias e imediatas com navegação cruzada`
 16. `feat: países com códigos M49/ISO e entrada na Home`
 17. `feat: indicadores demográficos no detalhe de UF e município`
+18. `feat: mapa coroplético de população por UF na Home`

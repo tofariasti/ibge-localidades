@@ -18,3 +18,16 @@ export interface LocalidadeIndicators {
   sourceUrl: string
   indicators: IndicatorValue[]
 }
+
+/** Valores de um indicador por UF (mapa coroplético). */
+export interface UfIndicatorSeries {
+  period: string
+  variableId: string
+  variableLabel: string
+  unit: string
+  queriedAt: string
+  sourceLabel: string
+  sourceUrl: string
+  /** Chave = id IBGE da UF. */
+  valuesByUfId: Record<number, number>
+}

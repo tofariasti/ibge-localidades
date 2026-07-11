@@ -279,6 +279,46 @@ a:hover {
   margin: 1.5rem 0;
 }
 
+.map-mode-toggle {
+  display: inline-flex;
+  gap: 0;
+  margin: 0.5rem 0 0;
+  border: 1px solid #c5cae9;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.map-mode-toggle__btn {
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  border: none;
+  background: transparent;
+  color: #3949ab;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.map-mode-toggle__btn + .map-mode-toggle__btn {
+  border-left: 1px solid #c5cae9;
+}
+
+.map-mode-toggle__btn:hover {
+  background: #e8eaf6;
+}
+
+.map-mode-toggle__btn.is-active {
+  background: #1a237e;
+  color: #fff;
+}
+
+.map-mode-toggle__btn:focus-visible {
+  outline: 2px solid #90caf9;
+  outline-offset: -2px;
+  z-index: 1;
+}
+
 .home-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -462,6 +502,47 @@ a:hover {
   font-size: 0.75rem;
   color: #777;
   text-align: center;
+}
+
+.brazil-map__tooltip-value {
+  font-weight: 700;
+  color: #1a237e;
+}
+
+.brazil-map__choropleth-legend {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.brazil-map__choropleth-legend-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.brazil-map__choropleth-scale {
+  display: flex;
+  height: 0.85rem;
+  max-width: 280px;
+  margin: 0 auto;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #cfd8dc;
+}
+
+.brazil-map__choropleth-swatch {
+  flex: 1;
+  min-width: 0;
+}
+
+.brazil-map__choropleth-labels {
+  display: flex;
+  justify-content: space-between;
+  max-width: 280px;
+  margin: 0.35rem auto 0;
+  font-size: 0.75rem;
+  color: #555;
 }
 
 .card {
