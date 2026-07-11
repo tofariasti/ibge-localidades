@@ -4,40 +4,13 @@ Fluxo: uma US por vez. Commit ao concluir todas as tasks da US.
 
 Ordem pós-MVP: **base → achar/exportar → hierarquia → análise → retenção → B2B**.
 
+Priorização de valor (A/B/C) e prompt de discovery: [PRODUCT-VALUE.md](./PRODUCT-VALUE.md).
+
 ## Em progresso
 
 _(nenhuma)_
 
 ## Backlog
-
-### Fase 1 — Achar e levar o dado
-
-#### US-10 — Busca global
-
-- [ ] T10.1 Índice/cliente de busca (nome, sigla UF, código IBGE)
-- [ ] T10.2 UI de busca no `Layout` (autocomplete + teclado)
-- [ ] T10.3 Navegação para detalhe (região / UF / município)
-- [ ] T10.4 Resultado mostra hierarquia (“Município → UF → Região”)
-
-#### US-11 — Filtro local em listagens
-
-- [ ] T11.1 Campo de filtro em `MunicipiosList`
-- [ ] T11.2 Campo de filtro em `EstadosList` e `RegioesList`
-- [ ] T11.3 Contagem de resultados filtrados
-
-#### US-12 — Copiar e exportar dados
-
-- [ ] T12.1 Botão “Copiar código IBGE” nos detalhes
-- [ ] T12.2 Botão “Copiar JSON” do recurso atual
-- [ ] T12.3 Export CSV da lista visível (municípios / estados / regiões)
-- [ ] T12.4 Export JSON da lista visível
-- [ ] T12.5 Feedback visual de cópia/export concluído
-
-#### US-13 — Transparência da API oficial
-
-- [ ] T13.1 Helper que monta a URL `servicodados.ibge.gov.br` da tela atual
-- [ ] T13.2 Botão “Ver na API” / “Copiar URL da API”
-- [ ] T13.3 Documentar no README o padrão de URLs
 
 ### Fase 2 — Hierarquia territorial completa
 
@@ -210,3 +183,30 @@ _(nenhuma)_
 - [x] T9.2 Persistência opcional em `localStorage` com TTL
 - [x] T9.3 Retry no `ErrorMessage` / `useIbgeQuery`
 - [x] T9.4 Empty state quando lista vier vazia
+
+### US-10 — Busca global
+
+- [x] T10.1 Índice/cliente de busca (nome, sigla UF, código IBGE)
+- [x] T10.2 UI de busca no `Layout` (autocomplete + teclado)
+- [x] T10.3 Navegação para detalhe (região / UF / município)
+- [x] T10.4 Resultado mostra hierarquia (“Município → UF → Região”)
+
+### US-11 — Filtro local em listagens
+
+- [x] T11.1 Campo de filtro em `MunicipiosList`
+- [x] T11.2 Campo de filtro em `EstadosList` e `RegioesList`
+- [x] T11.3 Contagem de resultados filtrados
+
+### US-12 — Copiar e exportar dados
+
+- [x] T12.1 Botão “Copiar código IBGE” nos detalhes
+- [x] T12.2 Botão “Copiar JSON” do recurso atual
+- [x] T12.3 Export CSV da lista visível (municípios / estados / regiões)
+- [x] T12.4 Export JSON da lista visível
+- [x] T12.5 Feedback visual de cópia/export concluído
+
+### US-13 — Transparência da API oficial
+
+- [x] T13.1 Helper que monta a URL `servicodados.ibge.gov.br` da tela atual
+- [x] T13.2 Botão “Ver na API” / “Copiar URL da API”
+- [x] T13.3 Documentar no README o padrão de URLs

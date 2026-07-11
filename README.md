@@ -103,6 +103,18 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 
 Base: `https://servicodados.ibge.gov.br/api/v1/localidades`
 
+Nas telas do app, **Ver na API** / **Copiar URL da API** montam a mesma URL via `buildIbgeApiUrl` (`src/api/ibgeClient.ts`).
+
+| Tela | Path típico |
+|------|-------------|
+| Lista de regiões | `/regioes?orderBy=nome` |
+| Detalhe de região | `/regioes/{id}` |
+| Lista de estados | `/estados?orderBy=nome` |
+| Detalhe de estado | `/estados/{id}` |
+| Municípios da UF | `/estados/{id}/municipios?orderBy=nome` |
+| Detalhe de município | `/municipios/{id}` |
+| Todos os municípios (busca) | `/municipios?orderBy=nome` |
+
 ```bash
 # Regiões
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/regioes?orderBy=nome"
@@ -117,8 +129,17 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/estados/35/municipi
 
 # Município São Paulo (capital)
 curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
+
+# Todos os municípios (índice da busca global)
+curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome" | head -c 200
 ```
 
+## Funcionalidades (Fase 1)
+
+- **Busca global** no header (nome, sigla UF ou código IBGE) com hierarquia no resultado
+- **Filtro local** nas listas de regiões, estados e municípios, com contagem
+- **Copiar** código IBGE / JSON nos detalhes; **exportar** CSV/JSON da lista filtrada
+- **Ver / copiar URL** da API oficial correspondente à tela
 ## Scripts
 
 | Comando | Descrição |
@@ -135,9 +156,10 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308"
 
 Listagens estáveis (regiões, UFs, municípios por UF, UFs por região) usam cache em memória + `localStorage` (TTL 24h). Detalhes individuais sempre vão à API.
 
-## Kanban
+## Kanban e valor de produto
 
-Tarefas e user stories em [docs/KANBAN.md](docs/KANBAN.md).
+- Tarefas e user stories: [docs/KANBAN.md](docs/KANBAN.md)
+- Prompt de discovery e priorização A/B/C: [docs/PRODUCT-VALUE.md](docs/PRODUCT-VALUE.md)
 
 ## Commits
 
@@ -152,3 +174,7 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 7. `docs: polimento UI e documentação de uso`
 8. `feat: mapa interativo do Brasil (malha IBGE)`
 9. `feat: cache, retry e empty state nas consultas IBGE`
+10. `feat: busca global por nome, sigla e código IBGE`
+11. `feat: filtro local e contagem nas listagens`
+12. `feat: copiar e exportar CSV/JSON das consultas`
+13. `feat: link e URL oficial da API IBGE nas telas`
