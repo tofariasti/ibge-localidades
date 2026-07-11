@@ -1,8 +1,11 @@
 import { Link, Outlet } from 'react-router-dom'
+import { useModules } from '../hooks/useModules'
 import { GlobalSearch } from './GlobalSearch'
 import { ThemeToggle } from './ThemeToggle'
 
 export function Layout() {
+  const { isEnabled } = useModules()
+
   return (
     <div className="layout">
       <a href="#conteudo-principal" className="skip-link">
@@ -20,6 +23,8 @@ export function Layout() {
             <Link to="/rankings">Rankings</Link>
             <Link to="/comparar">Comparar</Link>
             <Link to="/salvos">Salvos</Link>
+            {isEnabled('nomes') && <Link to="/nomes">Nomes</Link>}
+            <Link to="/modulos">Módulos</Link>
             <Link to="/glossario">Glossário</Link>
             <Link to="/paises">Países</Link>
           </nav>
@@ -37,6 +42,10 @@ export function Layout() {
         >
           API IBGE — Localidades
         </a>
+        <span className="footer__sep" aria-hidden="true">
+          ·
+        </span>
+        <Link to="/modulos">Módulos</Link>
         <span className="footer__sep" aria-hidden="true">
           ·
         </span>

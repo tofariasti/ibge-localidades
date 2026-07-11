@@ -9,11 +9,14 @@ import { ErrorMessage } from '../components/ErrorMessage'
 import { FavoriteButton } from '../components/FavoriteButton'
 import { IndicadoresPanel } from '../components/IndicadoresPanel'
 import { Loading } from '../components/Loading'
+import { SerieTemporalPanel } from '../components/SerieTemporalPanel'
 import { TrackVisit } from '../components/TrackVisit'
 import { useIbgeQuery } from '../hooks/useIbgeQuery'
+import { useModules } from '../hooks/useModules'
 
 export function EstadoDetail() {
   const { id } = useParams<{ id: string }>()
+  const { isEnabled } = useModules()
   const { data, loading, error, refetch, refetching } = useIbgeQuery(
     () => getEstado(id!),
     [id],
@@ -73,6 +76,10 @@ export function EstadoDetail() {
       </dl>
 
       <IndicadoresPanel level="estado" id={data.id} />
+
+      {isEnabled('series') && (
+        <SerieTemporalPanel level="estado" id={data.id} />
+      )}
 
       <DetailActions
         code={data.id}

@@ -102,6 +102,10 @@ export function Home() {
           <h2>Salvos</h2>
           <p>Favoritos e histórico neste navegador</p>
         </Link>
+        <Link to="/modulos" className="card">
+          <h2>Módulos</h2>
+          <p>Séries temporais, Nomes e catálogo por plano</p>
+        </Link>
         <Link to="/glossario" className="card">
           <h2>Glossário</h2>
           <p>Código IBGE, meso/micro, intermediária e imediata</p>

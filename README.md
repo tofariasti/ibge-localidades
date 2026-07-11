@@ -145,12 +145,16 @@ O build padrão (`npm run build`) continua com `base: /` para Docker e deploy em
 | `/embed/estados/:id` | Widget: detalhe compacto da UF |
 | `/embed/municipios/:id` | Widget: detalhe compacto do município |
 | `/embed/regioes/:id` | Widget: detalhe compacto da região |
+| `/modulos` | Catálogo de módulos (Livre / Análise) |
+| `/nomes` | Frequência e ranking de nomes (módulo opcional) |
 
 Na comparação, use `?ids=` com até 3 tokens separados por vírgula: `uf:35` (estado) ou `mun:3550308` (município). Ex.: `/comparar?ids=uf:35,mun:3304557`.
 
 Nos rankings, use `?indicador=` com `populacao` (padrão), `area` ou `densidade` (Censo 2022).
 
 Filtros de lista usam `?q=` (texto). Na Home, o mapa coroplético usa `?mapa=indicador`. Use **Copiar link desta view** para compartilhar a URL atual com esses parâmetros.
+
+Módulos opcionais: ative em `/modulos` ou via `?modulos=series,nomes` (séries temporais no detalhe; página Nomes). Persistência em `localStorage`.
 
 **Embed / white-label:** veja [docs/EMBED.md](docs/EMBED.md) (`theme`, `accent`, `bg`, `text`, `brand`, `logo`).
 ## Exemplos de API (curl)

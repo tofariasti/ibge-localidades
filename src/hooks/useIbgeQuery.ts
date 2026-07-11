@@ -14,9 +14,10 @@ interface UseIbgeQueryResult<T> {
 export function useIbgeQuery<T>(
   fetcher: () => Promise<T>,
   deps: unknown[] = [],
+  enabled = true,
 ): UseIbgeQueryResult<T> {
   const [data, setData] = useState<T | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(enabled)
   const [refetching, setRefetching] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [tick, setTick] = useState(0)
@@ -25,6 +26,14 @@ export function useIbgeQuery<T>(
   const depsKey = JSON.stringify(deps)
 
   useEffect(() => {
+    if (!enabled) {
+      setLoading(false)
+      setRefetching(false)
+      setError(null)
+      setData(null)
+      return
+    }
+
     let cancelled = false
     const prev = prevRef.current
     const depsChanged = !prev || prev.depsKey !== depsKey
@@ -67,11 +76,11 @@ export function useIbgeQuery<T>(
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [depsKey, tick])
+  }, [depsKey, tick, enabled])
 
   return {
     data,
-    loading,
+    loading: enabled && loading,
     refetching,
     error,
     refetch: () => setTick((n) => n + 1),

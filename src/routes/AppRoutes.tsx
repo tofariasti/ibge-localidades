@@ -26,6 +26,8 @@ import { RankingMunicipiosUf } from '../pages/RankingMunicipiosUf'
 import { Salvos } from '../pages/Salvos'
 import { Glossario } from '../pages/Glossario'
 import { Doar } from '../pages/Doar'
+import { Modulos } from '../pages/Modulos'
+import { Nomes } from '../pages/Nomes'
 import { EmbedMap } from '../pages/embed/EmbedMap'
 import { EmbedEstado } from '../pages/embed/EmbedEstado'
 import { EmbedMunicipio } from '../pages/embed/EmbedMunicipio'
@@ -43,6 +45,8 @@ export function AppRoutes() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="doar" element={<Doar />} />
+        <Route path="modulos" element={<Modulos />} />
+        <Route path="nomes" element={<Nomes />} />
         <Route path="salvos" element={<Salvos />} />
         <Route path="glossario" element={<Glossario />} />
         <Route path="regioes" element={<RegioesList />} />

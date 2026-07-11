@@ -12,13 +12,7 @@ _(nenhuma)_
 
 ## Backlog
 
-### Fase 5 — Monetização B2B (após tração)
-
-#### US-28 — Módulos IBGE adicionais
-
-- [ ] T28.1 SIDRA avançado (séries temporais)
-- [ ] T28.2 API de Nomes (módulo opcional)
-- [ ] T28.3 Catálogo de módulos ativáveis por plano
+_(nenhuma US na Fase 5 — US-26 adiada)_
 
 ## Adiado
 
@@ -206,3 +200,9 @@ _(nenhuma)_
 - [x] T27.1 Widget embeddable (mapa ou detalhe)
 - [x] T27.2 Parâmetros de marca (cores / logo)
 - [x] T27.3 Documentação de integração
+
+### US-28 — Módulos IBGE adicionais
+
+- [x] T28.1 SIDRA avançado (séries temporais)
+- [x] T28.2 API de Nomes (módulo opcional)
+- [x] T28.3 Catálogo de módulos ativáveis por plano

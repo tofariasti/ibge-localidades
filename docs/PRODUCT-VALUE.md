@@ -140,6 +140,4 @@ flowchart LR
 
 ## Próximo passo de implementação
 
-US-27 concluída. Próxima da Fase 5 no [KANBAN](./KANBAN.md): **US-28** (módulos IBGE adicionais), ou retomar **US-26** (conta/sync) se houver tração. Pedido típico:
-
-> Implemente a US-28 — módulos IBGE adicionais.
+Backlog da Fase 5 esgotado (US-26 adiada). Próximas ideias: retomar **US-26** (conta/sync) com tração, ou novas USs a partir do discovery em [PRODUCT-VALUE.md](./PRODUCT-VALUE.md).
