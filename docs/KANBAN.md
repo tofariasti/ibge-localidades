@@ -14,12 +14,6 @@ _(nenhuma)_
 
 ### Fase 4 — Retenção e polimento
 
-#### US-23 — PWA e mobile
-
-- [ ] T23.1 Manifest + service worker básico
-- [ ] T23.2 Ícones e nome instalável
-- [ ] T23.3 Revisar layout touch (mapa, busca, listas longas)
-
 #### US-24 — Glossário e acessibilidade
 
 - [ ] T24.1 Página/glossário: código IBGE, meso/micro, imediata/intermediária
@@ -206,3 +200,9 @@ _(nenhuma)_
 - [x] T22.1 Sync busca/filtro com query string
 - [x] T22.2 Sync coropleto/indicador com query string
 - [x] T22.3 Botão “Copiar link desta view”
+
+### US-23 — PWA e mobile
+
+- [x] T23.1 Manifest + service worker básico
+- [x] T23.2 Ícones e nome instalável
+- [x] T23.3 Revisar layout touch (mapa, busca, listas longas)

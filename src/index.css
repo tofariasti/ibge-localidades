@@ -966,20 +966,91 @@ a:hover {
 @media (max-width: 600px) {
   .header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .header nav {
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    row-gap: 0.5rem;
+  }
+
+  .header nav a {
+    padding: 0.35rem 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .global-search {
     max-width: none;
     width: 100%;
+    order: 3;
+  }
+
+  .global-search__input {
+    min-height: 44px;
+    font-size: 1rem;
+  }
+
+  .global-search__option {
+    min-height: 48px;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .button,
+  .button--secondary,
+  .map-mode-toggle__btn {
+    min-height: 44px;
+    padding: 0.55rem 1rem;
+  }
+
+  .action-bar__buttons {
+    gap: 0.65rem;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .brazil-map {
+    padding: 0.85rem;
+  }
+
+  .brazil-map__state {
+    stroke-width: 1;
   }
 
   .data-list {
     font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .data-list th,
   .data-list td {
-    padding: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  .saved-list__item {
+    align-items: stretch;
+  }
+
+  .saved-list__item .button {
+    width: 100%;
+  }
+}
+
+@media (hover: none) {
+  .data-list tbody tr:hover {
+    background: transparent;
+  }
+
+  .brazil-map__state:hover,
+  .brazil-map__state.is-hovered {
+    filter: none;
   }
 }

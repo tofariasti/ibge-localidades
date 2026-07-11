@@ -206,6 +206,7 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 - **Comparar** até 3 municípios ou UFs em `/comparar` (códigos, hierarquia, indicadores; link compartilhável via `?ids=`)
 - **Salvos** em `/salvos`: favoritar região/UF/município e ver histórico recente (ambos em `localStorage`)
 - **Links de view**: filtros (`?q=`), mapa (`?mapa=indicador`), rankings (`?indicador=`) e comparar (`?ids=`) — botão “Copiar link desta view”
+- **PWA** instalável (manifest + service worker) com layout mobile aprimorado
 - **Rankings** de UFs e de municípios por UF (população, área ou densidade — Censo 2022), com link para o detalhe
 ## Scripts
 
@@ -222,6 +223,16 @@ curl -s "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=
 ## Cache
 
 Listagens estáveis (regiões, UFs, municípios por UF, UFs por região) usam cache em memória + `localStorage` (TTL 24h). Detalhes individuais sempre vão à API.
+
+## PWA
+
+O build de produção gera um Progressive Web App (`vite-plugin-pwa`):
+
+- Manifest instalável (**IBGE Localidades** / short name **IBGE Local**)
+- Service worker com atualização automática e fallback SPA
+- Ícones em `public/pwa-192.png` e `public/pwa-512.png`
+
+Após `npm run build` / `npm run build:pages`, o app pode ser instalado no dispositivo a partir do navegador (HTTPS ou localhost).
 
 ## Kanban e valor de produto
 
@@ -254,3 +265,4 @@ Um commit por user story concluída (Conventional Commits). Histórico:
 20. `feat: rankings de UFs e municípios por indicador do Censo 2022`
 21. `feat: favoritos e histórico local de consultas`
 22. `feat: sincroniza filtros e mapa na URL para compartilhar views`
+23. `feat: PWA instalável e ajustes de layout touch`
