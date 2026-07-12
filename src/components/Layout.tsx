@@ -27,6 +27,9 @@ export function Layout() {
             <Link to="/modulos">Módulos</Link>
             <Link to="/glossario">Glossário</Link>
             <Link to="/paises">Países</Link>
+            <Link to="/doar" className="header__donate-link">
+              Apoiar ❤️
+            </Link>
           </nav>
           <ThemeToggle />
         </div>
