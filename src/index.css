@@ -2042,7 +2042,7 @@ a:focus-visible {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 4.5rem 0 2rem;
+    padding: 1rem 0 2rem;
     transform: translateX(100%);
     transition: transform var(--transition-base);
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
@@ -2058,6 +2058,7 @@ a:focus-visible {
     flex-direction: column;
     gap: 0;
     width: 100%;
+    padding-top: 3.5rem;
   }
 
   .header__tools nav a {
@@ -2132,7 +2133,11 @@ a:focus-visible {
   .header__tools {
     width: 100%;
     max-width: 100%;
-    padding-top: 4rem;
+    padding-top: 1rem;
+  }
+
+  .header__tools nav {
+    padding-top: 3.5rem;
   }
 
   .header__tools nav a {
