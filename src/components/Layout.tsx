@@ -1,10 +1,30 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useModules } from '../hooks/useModules'
 import { GlobalSearch } from './GlobalSearch'
 import { ThemeToggle } from './ThemeToggle'
 
 export function Layout() {
   const { isEnabled } = useModules()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Fecha o menu quando a rota muda
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [location.pathname])
+
+  // Previne scroll quando menu está aberto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
 
   return (
     <div className="layout">
@@ -16,7 +36,21 @@ export function Layout() {
           IBGE Localidades
         </Link>
         <GlobalSearch />
-        <div className="header__tools">
+        
+        <button
+          className="header__menu-toggle"
+          aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span className="header__menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <div className={`header__tools ${isMenuOpen ? 'is-open' : ''}`}>
           <nav aria-label="Principal">
             <Link to="/regioes">Regiões</Link>
             <Link to="/estados">Estados</Link>
